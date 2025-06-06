@@ -1,11 +1,13 @@
-import NavBar from './components/NavBar'
+import { BrowserRouter } from 'react-router-dom'
+import NavBar from '@/components/NavBar'
+import RoutesIndex from '@/routes/RoutesIndex'
 
 const App = () => {
   return (
-    <>
+    <BrowserRouter>
       <NavBar />
-      <h1>App</h1>
-    </>
+      <RoutesIndex />
+    </BrowserRouter>
   )
 }
 
