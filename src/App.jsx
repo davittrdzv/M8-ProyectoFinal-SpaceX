@@ -1,12 +1,15 @@
 import { BrowserRouter } from 'react-router-dom'
 import NavBar from '@/components/NavBar'
 import RoutesIndex from '@/routes/RoutesIndex'
+import { SpaceXProvider } from '@/context/SpaceXContext.jsx'
 
 const App = () => {
   return (
     <BrowserRouter>
-      <NavBar />
-      <RoutesIndex />
+      <SpaceXProvider>
+        <NavBar />
+        <RoutesIndex />
+      </SpaceXProvider>
     </BrowserRouter>
   )
 }
