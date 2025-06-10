@@ -17,6 +17,12 @@ const SpaceXProvider = ({ children }) => {
   const [roadsterInfo, setRoadsterInfo] = useState({})
   const [starlinkInfo, setStarlinkInfo] = useState([])
   const [historyInfo, setHistoryInfo] = useState([])
+  const [isCompanyInfoLoading, setIsCompanyInfoLoading] = useState(true)
+  const [islaunchesInfoLoading, setIslaunchesInfoLoading] = useState(true)
+  const [isRocketsInfoLoading, setIsRocketsInfoLoading] = useState(true)
+  const [isRoadsterInfoLoading, setRoadsterInfoLoading] = useState(true)
+  const [isStarlinkInfoLoading, setStarlinkInfoLoading] = useState(true)
+  const [isHistoryInfoLoading, setHistoryInfoLoading] = useState(true)
 
   const fetchSpaceXInfo = async () => {
     try {
@@ -34,6 +40,13 @@ const SpaceXProvider = ({ children }) => {
       setHistoryInfo(historyResponse.data)
     } catch (error) {
       console.error('Error fetching SpaceX info:', error)
+    } finally {
+      setIsCompanyInfoLoading(false)
+      setIslaunchesInfoLoading(false)
+      setIsRocketsInfoLoading(false)
+      setRoadsterInfoLoading(false)
+      setStarlinkInfoLoading(false)
+      setHistoryInfoLoading(false)
     }
   }
 
@@ -61,7 +74,13 @@ const SpaceXProvider = ({ children }) => {
     rocketsInfo,
     roadsterInfo,
     starlinkInfo,
-    historyInfo
+    historyInfo,
+    isCompanyInfoLoading,
+    islaunchesInfoLoading,
+    isRocketsInfoLoading,
+    isRoadsterInfoLoading,
+    isStarlinkInfoLoading,
+    isHistoryInfoLoading
   }
 
   return (
