@@ -50,7 +50,7 @@ const NavBar = () => {
             </li>
             <li className='nav-item'>
               <NavLink className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} aria-current='page' to='/history'>
-                History
+                Historic Events
               </NavLink>
             </li>
             <li className='nav-item'>
