@@ -15,11 +15,14 @@ const getStarlinkSpaceXService = () => axios.get(`${BASE_URLV4}/starlink`)
 
 const getHistorySpaceXService = () => axios.get(`${BASE_URLV4}/history`)
 
+const getLaunchpadsSpaceXService = () => axios.get(`${BASE_URLV4}/launchpads`)
+
 export {
   getCompanySpaceXService,
   getLaunchesSpaceXService,
   getRocketsSpaceXService,
   getRoadsterSpaceXService,
   getStarlinkSpaceXService,
-  getHistorySpaceXService
+  getHistorySpaceXService,
+  getLaunchpadsSpaceXService
 }

@@ -5,7 +5,8 @@ import {
   getRocketsSpaceXService,
   getRoadsterSpaceXService,
   getStarlinkSpaceXService,
-  getHistorySpaceXService
+  getHistorySpaceXService,
+  getLaunchpadsSpaceXService
 } from '@/services/spaceXservices'
 
 const SpaceXContext = createContext()
@@ -17,12 +18,14 @@ const SpaceXProvider = ({ children }) => {
   const [roadsterInfo, setRoadsterInfo] = useState({})
   const [starlinkInfo, setStarlinkInfo] = useState([])
   const [historyInfo, setHistoryInfo] = useState([])
+  const [launchpadsInfo, setLaunchpadsInfo] = useState([])
   const [isCompanyInfoLoading, setIsCompanyInfoLoading] = useState(true)
   const [isLaunchesInfoLoading, setIslaunchesInfoLoading] = useState(true)
   const [isRocketsInfoLoading, setIsRocketsInfoLoading] = useState(true)
   const [isRoadsterInfoLoading, setRoadsterInfoLoading] = useState(true)
   const [isStarlinkInfoLoading, setStarlinkInfoLoading] = useState(true)
   const [isHistoryInfoLoading, setHistoryInfoLoading] = useState(true)
+  const [isLaunchpadsInfoLoading, setLaunchpadsInfoLoading] = useState(true)
 
   const fetchSpaceXInfo = async () => {
     try {
@@ -32,12 +35,14 @@ const SpaceXProvider = ({ children }) => {
       const roadsterResponse = await getRoadsterSpaceXService()
       const starlinkResponse = await getStarlinkSpaceXService()
       const historyResponse = await getHistorySpaceXService()
+      const launchpadsResponse = await getLaunchpadsSpaceXService()
       setCompanyInfo(companyResponse.data)
       setLaunchesInfo(launchesResponse.data)
       setRocketsInfo(rocketsResponse.data)
       setRoadsterInfo(roadsterResponse.data)
       setStarlinkInfo(starlinkResponse.data)
       setHistoryInfo(historyResponse.data)
+      setLaunchpadsInfo(launchpadsResponse.data)
     } catch (error) {
       console.error('Error fetching SpaceX info:', error)
     } finally {
@@ -47,6 +52,7 @@ const SpaceXProvider = ({ children }) => {
       setRoadsterInfoLoading(false)
       setStarlinkInfoLoading(false)
       setHistoryInfoLoading(false)
+      setLaunchpadsInfoLoading(false)
     }
   }
 
@@ -62,11 +68,13 @@ const SpaceXProvider = ({ children }) => {
     console.log('Roadster Info: ', roadsterInfo)
     console.log('Starlink Info: ', starlinkInfo)
     console.log('History Info: ', historyInfo)
+    console.log('Launchpads Info: ', launchpadsInfo)
     console.log('Launches Array Length: ', launchesInfo.length)
     console.log('Rockets Array Length: ', rocketsInfo.length)
     console.log('Starlink Array Length: ', starlinkInfo.length)
     console.log('History Array Length: ', historyInfo.length)
-  }, [companyInfo, launchesInfo, rocketsInfo, roadsterInfo, starlinkInfo, historyInfo])
+    console.log('Launchpads Info: ', launchpadsInfo.length)
+  }, [companyInfo, launchesInfo, rocketsInfo, roadsterInfo, starlinkInfo, historyInfo, launchpadsInfo])
 
   const data = {
     companyInfo,
@@ -75,12 +83,14 @@ const SpaceXProvider = ({ children }) => {
     roadsterInfo,
     starlinkInfo,
     historyInfo,
+    launchpadsInfo,
     isCompanyInfoLoading,
     isLaunchesInfoLoading,
     isRocketsInfoLoading,
     isRoadsterInfoLoading,
     isStarlinkInfoLoading,
-    isHistoryInfoLoading
+    isHistoryInfoLoading,
+    isLaunchpadsInfoLoading
   }
 
   return (
