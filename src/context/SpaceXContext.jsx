@@ -18,7 +18,7 @@ const SpaceXProvider = ({ children }) => {
   const [starlinkInfo, setStarlinkInfo] = useState([])
   const [historyInfo, setHistoryInfo] = useState([])
   const [isCompanyInfoLoading, setIsCompanyInfoLoading] = useState(true)
-  const [islaunchesInfoLoading, setIslaunchesInfoLoading] = useState(true)
+  const [isLaunchesInfoLoading, setIslaunchesInfoLoading] = useState(true)
   const [isRocketsInfoLoading, setIsRocketsInfoLoading] = useState(true)
   const [isRoadsterInfoLoading, setRoadsterInfoLoading] = useState(true)
   const [isStarlinkInfoLoading, setStarlinkInfoLoading] = useState(true)
@@ -76,7 +76,7 @@ const SpaceXProvider = ({ children }) => {
     starlinkInfo,
     historyInfo,
     isCompanyInfoLoading,
-    islaunchesInfoLoading,
+    isLaunchesInfoLoading,
     isRocketsInfoLoading,
     isRoadsterInfoLoading,
     isStarlinkInfoLoading,
