@@ -1,7 +1,9 @@
+import { placeholderPic, handlePicError } from '@/utilities/placeholderPic'
+
 const LaunchSummary = ({ name, date, success, rocket, launchpad, picture }) => {
   return (
     <div className='card' style={{ width: '18rem' }}>
-      <img src={picture} className='card-img-top' alt={name} />
+      <img src={picture || placeholderPic} className='card-img-top' alt={name} onError={handlePicError} />
       <div className='card-body'>
         <h5 className='card-title'>{name}</h5>
         <p className='card-text'>
