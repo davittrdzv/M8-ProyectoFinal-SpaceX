@@ -3,14 +3,17 @@ import NavBar from '@/components/NavBar'
 import Footer from '@/components/Footer'
 import RoutesIndex from '@/routes/RoutesIndex'
 import { SpaceXProvider } from '@/context/SpaceXContext.jsx'
+import { AuthProvider } from '@/context/AuthContext.jsx'
 
 const App = () => {
   return (
     <BrowserRouter>
-      <SpaceXProvider>
-        <NavBar />
-        <RoutesIndex />
-      </SpaceXProvider>
+      <AuthProvider>
+        <SpaceXProvider>
+          <NavBar />
+          <RoutesIndex />
+        </SpaceXProvider>
+      </AuthProvider>
       <Footer />
     </BrowserRouter>
   )
