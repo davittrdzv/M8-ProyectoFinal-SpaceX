@@ -7,7 +7,7 @@ import {
   getStarlinkSpaceXService,
   getHistorySpaceXService,
   getLaunchpadsSpaceXService
-} from '@/services/spaceXservices'
+} from '@/services/spaceXServices'
 
 const SpaceXContext = createContext()
 
