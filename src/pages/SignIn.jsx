@@ -3,10 +3,13 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { schemaSignIn } from '@/utilities/formsSchema'
+import { useAuthContext } from '@/hooks/useAuthContext'
+import { signInUserService } from '@/services/userServices'
 
 const schema = schemaSignIn
 
 const SignIn = () => {
+  const { signInFunction } = useAuthContext()
   const navigate = useNavigate()
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
@@ -14,9 +17,21 @@ const SignIn = () => {
   })
 
   const onSubmit = async (formData) => {
-    console.log(formData)
-    navigate('/')
-    reset()
+    try {
+      const { status, data } = await signInUserService(formData)
+      if (status === 200) {
+        signInFunction(data.token)
+        reset()
+        navigate('/')
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        console.log('Login failed. Please check your credentials and try again.', error.message)
+      } else {
+        console.log('An unexpected error occurred. Please try again.', error.message)
+      }
+      console.error('Error logging in:', error)
+    }
   }
   return (
     <div className='border-top'>
