@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { schemaSignUp } from '@/utilities/formsSchema'
 import { useNavigate } from 'react-router-dom'
+import { signUpUserService } from '@/services/userServices'
 
 const schema = schemaSignUp
 
@@ -13,10 +14,18 @@ const SignUp = () => {
     resolver: yupResolver(schema)
   })
 
-  const onSubmit = (formData) => {
-    console.log(formData)
-    navigate('/signin')
-    reset()
+  const onSubmit = async (formData) => {
+    try {
+      const { status, data } = await signUpUserService(formData)
+      if (status === 201) {
+        console.log(data.message)
+        reset()
+        navigate('/signin')
+      }
+    } catch (error) {
+      console.log('An unexpected error occurred. Please try again.', error.message)
+      console.error('Error registering user:', error)
+    }
   }
 
   return (
