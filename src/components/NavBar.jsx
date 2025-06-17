@@ -1,6 +1,8 @@
 import { NavLink } from 'react-router-dom'
+import { useAuthContext } from '@/hooks/useAuthContext'
 
 const NavBar = () => {
+  const { logOutFunction } = useAuthContext()
   return (
     <nav
       className='navbar navbar-expand-md navbar-dark bg-dark'
@@ -66,6 +68,11 @@ const NavBar = () => {
             <li className='nav-item'>
               <NavLink className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} aria-current='page' to='/signup'>
                 Sign Up
+              </NavLink>
+            </li>
+            <li className='nav-item'>
+              <NavLink className='nav-link' aria-current='page' to='/' onClick={logOutFunction}>
+                Log Out
               </NavLink>
             </li>
           </ul>

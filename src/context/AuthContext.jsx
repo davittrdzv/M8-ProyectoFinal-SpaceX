@@ -20,6 +20,14 @@ const AuthProvider = ({ children }) => {
     setIsAuthenticated(true)
   }
 
+  const logOutFunction = () => {
+    localStorage.removeItem('token')
+    setToken(null)
+    setUserPayload(null)
+    setIsAuthenticated(false)
+    localStorage.setItem('isAuthenticated', false)
+  }
+
   useEffect(() => {
     console.log(isAuthenticated)
     console.log(typeof isAuthenticated)
@@ -27,6 +35,7 @@ const AuthProvider = ({ children }) => {
 
   const data = {
     signInFunction,
+    logOutFunction,
     isAuthenticated,
     token
   }
