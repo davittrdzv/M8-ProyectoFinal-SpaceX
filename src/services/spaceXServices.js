@@ -7,7 +7,11 @@ const getCompanySpaceXService = () => axios.get(`${BASE_URLV4}/company`)
 
 const getLaunchesSpaceXService = () => axios.get(`${BASE_URLV5}/launches`)
 
+const getOneLaunchSpaceXService = (id) => axios.get(`${BASE_URLV5}/launches:${id}`)
+
 const getRocketsSpaceXService = () => axios.get(`${BASE_URLV4}/rockets`)
+
+const getOneRocketSpaceXService = (id) => axios.get(`${BASE_URLV4}/rockets:${id}`)
 
 const getRoadsterSpaceXService = () => axios.get(`${BASE_URLV4}/roadster`)
 
@@ -20,7 +24,9 @@ const getLaunchpadsSpaceXService = () => axios.get(`${BASE_URLV4}/launchpads`)
 export {
   getCompanySpaceXService,
   getLaunchesSpaceXService,
+  getOneLaunchSpaceXService,
   getRocketsSpaceXService,
+  getOneRocketSpaceXService,
   getRoadsterSpaceXService,
   getStarlinkSpaceXService,
   getHistorySpaceXService,
