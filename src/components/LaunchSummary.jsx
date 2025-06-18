@@ -1,6 +1,7 @@
 import { placeholderPic, handlePicError } from '@/utilities/placeholderPic'
+import { Link } from 'react-router-dom'
 
-const LaunchSummary = ({ name, date, success, rocket, launchpad, picture }) => {
+const LaunchSummary = ({ id, name, date, success, rocket, launchpad, picture }) => {
   return (
     <div className='card' style={{ width: '18rem' }}>
       <img src={picture || placeholderPic} className='card-img-top' alt={name} onError={handlePicError} />
@@ -18,9 +19,9 @@ const LaunchSummary = ({ name, date, success, rocket, launchpad, picture }) => {
         <p className='card-text'>
           Status: {success}
         </p>
-        <a href='/about' className='btn btn-primary'>
+        <Link to={`/launches/${id}`} className='btn btn-primary'>
           View Details
-        </a>
+        </Link>
       </div>
     </div>
   )

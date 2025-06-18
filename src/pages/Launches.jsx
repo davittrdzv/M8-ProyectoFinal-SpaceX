@@ -13,6 +13,7 @@ const Launches = () => {
         : launchesInfo.map(launch => (
           <LaunchSummary
             key={launch.id}
+            id={launch.id}
             name={launch.name}
             date={launch.date_utc}
             success={launch.success === true ? 'Succesful' : 'Unsuccessful'}
