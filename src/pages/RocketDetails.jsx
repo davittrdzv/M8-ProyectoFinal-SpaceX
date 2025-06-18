@@ -28,9 +28,7 @@ const RocketDetails = () => {
       {isLoading
         ? <h1>Loading...</h1>
         : rocket
-          ? <RocketDetailsCard
-              id={rocket.id}
-            />
+          ? <RocketDetailsCard {...rocket} />
           : <Navigate to='/not-found' replace />}
 
     </>
