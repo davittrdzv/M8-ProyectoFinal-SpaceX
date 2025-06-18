@@ -10,7 +10,8 @@ const Rockets = () => {
         ? <h1>Loading</h1>
         : rocketsInfo.map(rocket => (
           <RocketSummary
-            key={rocket.nameid}
+            key={rocket.id}
+            id={rocket.id}
             name={rocket.name}
             company={rocket.company}
             country={rocket.country}

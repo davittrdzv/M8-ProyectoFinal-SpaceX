@@ -1,4 +1,6 @@
-const RocketSummary = ({ name, company, country, firstFlight, picture }) => {
+import { Link } from 'react-router-dom'
+
+const RocketSummary = ({ id, name, company, country, firstFlight, picture }) => {
   return (
     <div className='card' style={{ width: '18rem' }}>
       <img src={picture} className='card-img-top' alt={name} />
@@ -13,9 +15,9 @@ const RocketSummary = ({ name, company, country, firstFlight, picture }) => {
         <p className='card-text'>
           First Flight: {firstFlight}
         </p>
-        <a href='/about' className='btn btn-primary'>
+        <Link to={`/rockets/${id}`} className='btn btn-primary'>
           View Details
-        </a>
+        </Link>
       </div>
     </div>
   )
