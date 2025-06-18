@@ -8,6 +8,7 @@ import Launches from '@/pages/Launches'
 import NotFound from '@/pages/NotFound'
 import Roadster from '@/pages/Roadster'
 import Rockets from '@/pages/Rockets'
+import RocketDetails from '@/pages/RocketDetails'
 import SignIn from '@/pages/SignIn'
 import SignUp from '@/pages/SignUp'
 import Starlink from '@/pages/Starlink'
@@ -22,6 +23,7 @@ const RoutesIndex = () => {
       <Route path='/launches/:id' element={<LaunchDetails />} />
       <Route path='/roadster' element={<Roadster />} />
       <Route path='/rockets' element={<Rockets />} />
+      <Route path='/rockets/:id' element={<RocketDetails />} />
       <Route path='/signin' element={<SignIn />} />
       <Route path='/signup' element={<SignUp />} />
       <Route path='/starlink' element={<Starlink />} />
