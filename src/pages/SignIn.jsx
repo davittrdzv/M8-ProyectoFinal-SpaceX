@@ -1,4 +1,5 @@
 import '@/styles/form.css'
+import { swalSuccess, swalError, swalLoading } from '@/utilities/sweetAlerts'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -18,17 +19,19 @@ const SignIn = () => {
 
   const onSubmit = async (formData) => {
     try {
+      swalLoading()
       const { status, data } = await signInUserService(formData)
       if (status === 200) {
         signInFunction(data.token)
         reset()
+        swalSuccess('Sign In Succesful!')
         navigate('/')
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {
-        console.log('Login failed. Please check your credentials and try again.', error.message)
+        swalError('Login failed. Please check your credentials and try again.', error.message)
       } else {
-        console.log('An unexpected error occurred. Please try again.', error.message)
+        swalError('An unexpected error occurred. Please try again.', error.message)
       }
       console.error('Error logging in:', error)
     }

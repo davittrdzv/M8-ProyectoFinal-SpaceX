@@ -1,4 +1,5 @@
 import '@/styles/form.css'
+import { swalSuccess, swalError, swalLoading } from '@/utilities/sweetAlerts'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { schemaSignUp } from '@/utilities/formsSchema'
@@ -16,14 +17,15 @@ const SignUp = () => {
 
   const onSubmit = async (formData) => {
     try {
+      swalLoading()
       const { status, data } = await signUpUserService(formData)
       if (status === 201) {
-        console.log(data.message)
+        swalSuccess(data.message)
         reset()
         navigate('/signin')
       }
     } catch (error) {
-      console.log('An unexpected error occurred. Please try again.', error.message)
+      swalError('An unexpected error occurred. Please try again.', error.message)
       console.error('Error registering user:', error)
     }
   }
