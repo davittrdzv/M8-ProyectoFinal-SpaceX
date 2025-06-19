@@ -1,4 +1,5 @@
 import { placeholderPic, handlePicError } from '@/utilities/placeholderPic'
+import { getYouTubeEmbedUrl } from '@/utilities/getYouTubeEmbedUrl'
 
 const LaunchDetailsCard = ({ launch }) => {
   return (
@@ -116,7 +117,13 @@ const LaunchDetailsCard = ({ launch }) => {
         {launch.links?.webcast && (
           <>
             <h5>Launch Video</h5>
-            <span>NOTA: METER VIDEO</span>
+            <div className='ratio ratio-16x9'>
+              <iframe
+                src={getYouTubeEmbedUrl(launch.links.webcast)}
+                title='Launch video'
+                allowFullScreen
+              />
+            </div>
           </>
         )}
         {launch.links?.article && (
