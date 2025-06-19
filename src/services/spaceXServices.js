@@ -21,6 +21,18 @@ const getHistorySpaceXService = () => axios.get(`${BASE_URLV4}/history`)
 
 const getLaunchpadsSpaceXService = () => axios.get(`${BASE_URLV4}/launchpads`)
 
+const getOneCrewSpaceXService = (id) => axios.get(`${BASE_URLV4}/crew/${id}`)
+
+const getOneShipSpaceXService = (id) => axios.get(`${BASE_URLV4}/ships/${id}`)
+
+const getOneCapsuleSpaceXService = (id) => axios.get(`${BASE_URLV4}/capsules/${id}`)
+
+const getOnePayloadSpaceXService = (id) => axios.get(`${BASE_URLV4}/payloads/${id}`)
+
+const getOneCoreSpaceXService = (id) => axios.get(`${BASE_URLV4}/cores/${id}`)
+
+const getOneLandpadSpaceXService = (id) => axios.get(`${BASE_URLV4}/landpads/${id}`)
+
 export {
   getCompanySpaceXService,
   getLaunchesSpaceXService,
@@ -30,5 +42,12 @@ export {
   getRoadsterSpaceXService,
   getStarlinkSpaceXService,
   getHistorySpaceXService,
-  getLaunchpadsSpaceXService
+  getLaunchpadsSpaceXService,
+  getOneCrewSpaceXService,
+  getOneShipSpaceXService,
+  getOneCapsuleSpaceXService,
+  getOnePayloadSpaceXService,
+  getOneCoreSpaceXService,
+  getOneLandpadSpaceXService,
+
 }
