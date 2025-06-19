@@ -19,7 +19,7 @@ const Launches = () => {
             success={launch.success === true ? 'Succesful' : 'Unsuccessful'}
             rocket={findById(rocketsInfo, launch.rocket)?.name}
             launchpad={findById(launchpadsInfo, launch.launchpad)?.locality}
-            picture={launch.links.flickr.original[0]}
+            picture={launch.links.patch.large}
           />
         ))}
     </>

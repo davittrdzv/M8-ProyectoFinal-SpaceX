@@ -28,7 +28,7 @@ const LaunchDetails = () => {
       {isLoading
         ? <h1>Loading...</h1>
         : launch
-          ? <LaunchDetailsCard {...launch} />
+          ? <LaunchDetailsCard launch={launch} />
           : <Navigate to='/not-found' replace />}
 
     </>
