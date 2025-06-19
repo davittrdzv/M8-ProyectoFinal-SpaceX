@@ -1,7 +1,11 @@
 import { placeholderPic, handlePicError } from '@/utilities/placeholderPic'
 import { getYouTubeEmbedUrl } from '@/utilities/getYouTubeEmbedUrl'
+import { useSpaceXContext } from '@/hooks/useSpaceXContext'
+import { findById } from '@/utilities/findById'
+import { Link } from 'react-router-dom'
 
 const LaunchDetailsCard = ({ launch }) => {
+  const { rocketsInfo, launchpadsInfo } = useSpaceXContext()
   return (
     <div className='card mb-4'>
       <img
@@ -33,7 +37,8 @@ const LaunchDetailsCard = ({ launch }) => {
           </>
         )}
         {launch.details && <p className='card-text'><strong>Details:</strong> {launch.details}</p>}
-        <p className='card-text'><strong>Rocket:</strong> {launch.rocket} — NOTA: REFERENCIA CRUZADA CON OTRO ENDPOINT</p>
+        <strong>Rocket:</strong> {' '}
+        <Link to={`/rockets/${launch.rocket}`} className='card-text'>{findById(rocketsInfo, launch.rocket)?.name}</Link>
         {launch.crew?.length > 0 && (
           <>
             <h5>Crew</h5>
@@ -79,7 +84,7 @@ const LaunchDetailsCard = ({ launch }) => {
         )}
         {launch.launchpad && (
           <p className='card-text'>
-            <strong>Launchpad:</strong> {launch.launchpad} — NOTA: REFERENCIA CRUZADA CON OTRO ENDPOINT
+            <strong>Launchpad:</strong> {findById(launchpadsInfo, launch.launchpad)?.full_name}{'.'}
           </p>
         )}
         {launch.cores?.length > 0 && (
