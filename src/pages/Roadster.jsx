@@ -1,11 +1,5 @@
 import { useSpaceXContext } from '@/hooks/useSpaceXContext'
-
-const extractYouTubeId = (url) => {
-  if (typeof url !== 'string') return null
-  const regExp = /^.*(?:youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#&?]*).*/
-  const match = url.match(regExp)
-  return match && match[1] ? match[1] : null
-}
+import { getYouTubeEmbedUrl } from '@/utilities/getYouTubeEmbedUrl'
 
 const Roadster = () => {
   const { roadsterInfo, isRoadsterInfoLoading } = useSpaceXContext()
@@ -41,15 +35,13 @@ const Roadster = () => {
                 </a>
               </p>
             </div>
-            {extractYouTubeId(roadsterInfo.video) && (
-              <div className='ratio ratio-16x9 my-4'>
-                <iframe
-                  src={`https://www.youtube.com/embed/${extractYouTubeId(roadsterInfo.video)}`}
-                  title='Roadster Launch Video'
-                  allowFullScreen
-                />
-              </div>
-            )}
+            <div className='ratio ratio-16x9 my-4'>
+              <iframe
+                src={getYouTubeEmbedUrl(roadsterInfo.video)}
+                title='Roadster Launch Video'
+                allowFullScreen
+              />
+            </div>
           </div>
           )}
     </>
