@@ -5,7 +5,16 @@ import { findById } from '@/utilities/findById'
 import { Link } from 'react-router-dom'
 
 const LaunchDetailsCard = ({ launch }) => {
-  const { rocketsInfo, launchpadsInfo } = useSpaceXContext()
+  const {
+    rocketsInfo,
+    launchpadsInfo,
+    crewInfo,
+    shipsInfo,
+    capsulesInfo,
+    payloadsInfo,
+    coresInfo,
+    landpadsInfo,
+  } = useSpaceXContext()
   return (
     <div className='card mb-4'>
       <img
@@ -42,14 +51,20 @@ const LaunchDetailsCard = ({ launch }) => {
         {launch.crew?.length > 0 && (
           <>
             <h5>Crew</h5>
-            <ul>
-              {launch.crew.map((crewMember, index) => (
-                <li key={index}>
-                  <span>{crewMember.crew} — NOTA: REFERENCIA CRUZADA CON OTRO ENDPOINT</span>
-                  <p>Role: {crewMember.role}</p>
-                </li>
-              ))}
-            </ul>
+            {launch.crew.map((crewMember, index) => {
+              const crewData = findById(crewInfo, crewMember.crew)
+              return (
+                <div className='card' key={index}>
+                  {crewData &&
+                    <>
+                      <img src={crewData.image} alt={crewData.name} />
+                      <p>{crewData.name}</p>
+                      <p>Agency: {crewData.agency}</p>
+                      <p>Role: {crewMember.role}</p>
+                    </>}
+                </div>
+              )
+            })}
           </>
         )}
         {launch.ships?.length > 0 && (
