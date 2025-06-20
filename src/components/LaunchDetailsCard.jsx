@@ -72,7 +72,7 @@ const LaunchDetailsCard = ({ launch }) => {
             <h5>Ships</h5>
             <ul>
               {launch.ships.map((ship, index) => (
-                <li key={index}>{ship} — NOTA: REFERENCIA CRUZADA CON OTRO ENDPOINT</li>
+                <li key={index}>{findById(shipsInfo, ship)?.legacy_id}.</li>
               ))}
             </ul>
           </>
@@ -82,7 +82,9 @@ const LaunchDetailsCard = ({ launch }) => {
             <h5>Capsules</h5>
             <ul>
               {launch.capsules.map((capsule, index) => (
-                <li key={index}>{capsule} — NOTA: REFERENCIA CRUZADA CON OTRO ENDPOINT</li>
+                <li key={index}>
+                  {findById(capsulesInfo, capsule)?.serial} {'('}{findById(capsulesInfo, capsule)?.type}{').'}
+                </li>
               ))}
             </ul>
           </>
@@ -92,7 +94,10 @@ const LaunchDetailsCard = ({ launch }) => {
             <h5>Payloads</h5>
             <ul>
               {launch.payloads.map((payload, index) => (
-                <li key={index}>{payload} — NOTA: REFERENCIA CRUZADA CON OTRO ENDPOINT</li>
+                <li key={index}>
+                  {findById(payloadsInfo, payload)?.name}
+                  <p>{findById(payloadsInfo, payload)?.type}</p>
+                </li>
               ))}
             </ul>
           </>
@@ -109,14 +114,23 @@ const LaunchDetailsCard = ({ launch }) => {
                 <h5>Cores</h5>
                 {launch.cores.map((core, index) => (
                   <div key={index}>
-                    <p><strong>Core:</strong> {core.core} — NOTA: REFERENCIA CRUZADA CON OTRO ENDPOINT</p>
+                    <p><strong>Core:</strong> {findById(coresInfo, core.core)?.serial}{'.'}</p>
                     <p><strong>Flight:</strong> {core.flight}</p>
                     {core.landing_attempt && (
                       <>
                         <p><strong>Landing Attempt:</strong> Yes</p>
                         <p><strong>Landing Success:</strong> {core.landing_success ? 'Successful' : 'Unsuccessful'}</p>
                         {core.landing_type && <p><strong>Landing Type:</strong> {core.landing_type}</p>}
-                        {core.landpad && <p><strong>Landpad:</strong> {core.landpad} — NOTA: REFERENCIA CRUZADA CON OTRO ENDPOINT</p>}
+                        {core.landpad && (() => {
+                          const landpadData = findById(landpadsInfo, core.landpad)
+                          return landpadData && (
+                            <div className='mb-2'>
+                              <p><strong>Landpad:</strong> {landpadData.name} ({landpadData.full_name})</p>
+                              <p><strong>Locality:</strong> {landpadData.locality}</p>
+                              <p><strong>Region:</strong> {landpadData.region}</p>
+                            </div>
+                          )
+                        })()}
                       </>
                     )}
                   </div>
@@ -131,7 +145,6 @@ const LaunchDetailsCard = ({ launch }) => {
               className='img-fluid mb-3'
               alt='Launch Flickr'
             />
-            <span>NOTA: METER CARRUSEL</span>
           </>
         )}
         {launch.links?.webcast && (
