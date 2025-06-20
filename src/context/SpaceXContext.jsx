@@ -6,7 +6,14 @@ import {
   getRoadsterSpaceXService,
   getStarlinkSpaceXService,
   getHistorySpaceXService,
-  getLaunchpadsSpaceXService
+  getLaunchpadsSpaceXService,
+  getCrewSpaceXService,
+  getShipsSpaceXService,
+  getCapsulesSpaceXService,
+  getPayloadsSpaceXService,
+  getCoresSpaceXService,
+  getLandpadsSpaceXService,
+
 } from '@/services/spaceXServices'
 
 const SpaceXContext = createContext()
@@ -19,6 +26,12 @@ const SpaceXProvider = ({ children }) => {
   const [starlinkInfo, setStarlinkInfo] = useState([])
   const [historyInfo, setHistoryInfo] = useState([])
   const [launchpadsInfo, setLaunchpadsInfo] = useState([])
+  const [crewInfo, setCrewInfo] = useState([])
+  const [shipsInfo, setShipsInfo] = useState([])
+  const [capsulesInfo, setCapsulesInfo] = useState([])
+  const [payloadsInfo, setPayloadsInfo] = useState([])
+  const [coresInfo, setCoresInfo] = useState([])
+  const [landpadsInfo, setLandpadsInfo] = useState([])
   const [isCompanyInfoLoading, setIsCompanyInfoLoading] = useState(true)
   const [isLaunchesInfoLoading, setIslaunchesInfoLoading] = useState(true)
   const [isRocketsInfoLoading, setIsRocketsInfoLoading] = useState(true)
@@ -26,6 +39,12 @@ const SpaceXProvider = ({ children }) => {
   const [isStarlinkInfoLoading, setStarlinkInfoLoading] = useState(true)
   const [isHistoryInfoLoading, setHistoryInfoLoading] = useState(true)
   const [isLaunchpadsInfoLoading, setLaunchpadsInfoLoading] = useState(true)
+  const [isCrewInfoLoading, setIsCrewInfoLoading] = useState(true)
+  const [isShipsInfoLoading, setIsShipsInfoLoading] = useState(true)
+  const [isCapsulesInfoLoading, setIsCapsulesInfoLoading] = useState(true)
+  const [isPayloadsInfoLoading, setIsPayloadsInfoLoading] = useState(true)
+  const [isCoresInfoLoading, setIsCoresInfoLoading] = useState(true)
+  const [isLandpadsInfoLoading, setIsLandpadsInfoLoading] = useState(true)
 
   const fetchSpaceXInfo = async () => {
     try {
@@ -36,6 +55,12 @@ const SpaceXProvider = ({ children }) => {
       const starlinkResponse = await getStarlinkSpaceXService()
       const historyResponse = await getHistorySpaceXService()
       const launchpadsResponse = await getLaunchpadsSpaceXService()
+      const crewResponse = await getCrewSpaceXService()
+      const shipsResponse = await getShipsSpaceXService()
+      const capsulesResponse = await getCapsulesSpaceXService()
+      const payloadsResponse = await getPayloadsSpaceXService()
+      const coresResponse = await getCoresSpaceXService()
+      const landpadsResponse = await getLandpadsSpaceXService()
       setCompanyInfo(companyResponse.data)
       setLaunchesInfo(launchesResponse.data)
       setRocketsInfo(rocketsResponse.data)
@@ -43,6 +68,12 @@ const SpaceXProvider = ({ children }) => {
       setStarlinkInfo(starlinkResponse.data)
       setHistoryInfo(historyResponse.data)
       setLaunchpadsInfo(launchpadsResponse.data)
+      setCrewInfo(crewResponse.data)
+      setShipsInfo(shipsResponse.data)
+      setCapsulesInfo(capsulesResponse.data)
+      setPayloadsInfo(payloadsResponse.data)
+      setCoresInfo(coresResponse.data)
+      setLandpadsInfo(landpadsResponse.data)
     } catch (error) {
       console.error('Error fetching SpaceX info:', error)
     } finally {
@@ -53,28 +84,18 @@ const SpaceXProvider = ({ children }) => {
       setStarlinkInfoLoading(false)
       setHistoryInfoLoading(false)
       setLaunchpadsInfoLoading(false)
+      setIsCrewInfoLoading(false)
+      setIsShipsInfoLoading(false)
+      setIsCapsulesInfoLoading(false)
+      setIsPayloadsInfoLoading(false)
+      setIsCoresInfoLoading(false)
+      setIsLandpadsInfoLoading(false)
     }
   }
 
   useEffect(() => {
     fetchSpaceXInfo()
   }, [])
-
-  // useEffect con console.logs solo para efectos de testeo y validar información retornada en consola.
-  useEffect(() => {
-    console.log('Company Info: ', companyInfo)
-    console.log('Launches Info: ', launchesInfo)
-    console.log('Rockets Info: ', rocketsInfo)
-    console.log('Roadster Info: ', roadsterInfo)
-    console.log('Starlink Info: ', starlinkInfo)
-    console.log('History Info: ', historyInfo)
-    console.log('Launchpads Info: ', launchpadsInfo)
-    console.log('Launches Array Length: ', launchesInfo.length)
-    console.log('Rockets Array Length: ', rocketsInfo.length)
-    console.log('Starlink Array Length: ', starlinkInfo.length)
-    console.log('History Array Length: ', historyInfo.length)
-    console.log('Launchpads Info: ', launchpadsInfo.length)
-  }, [companyInfo, launchesInfo, rocketsInfo, roadsterInfo, starlinkInfo, historyInfo, launchpadsInfo])
 
   const data = {
     companyInfo,
@@ -84,13 +105,25 @@ const SpaceXProvider = ({ children }) => {
     starlinkInfo,
     historyInfo,
     launchpadsInfo,
+    crewInfo,
+    shipsInfo,
+    capsulesInfo,
+    payloadsInfo,
+    coresInfo,
+    landpadsInfo,
     isCompanyInfoLoading,
     isLaunchesInfoLoading,
     isRocketsInfoLoading,
     isRoadsterInfoLoading,
     isStarlinkInfoLoading,
     isHistoryInfoLoading,
-    isLaunchpadsInfoLoading
+    isLaunchpadsInfoLoading,
+    isCrewInfoLoading,
+    isShipsInfoLoading,
+    isCapsulesInfoLoading,
+    isPayloadsInfoLoading,
+    isCoresInfoLoading,
+    isLandpadsInfoLoading
   }
 
   return (
