@@ -1,3 +1,5 @@
+import Carousel from '@/components/Carousel'
+
 /* eslint-disable camelcase */
 const RocketDetailsCard = ({
   name,
@@ -23,7 +25,7 @@ const RocketDetailsCard = ({
 }) => {
   return (
     <div className='card mb-4'>
-      <img src={flickr_images[0]} className='card-img-top' alt={`Image of ${name}`} />
+      <Carousel images={flickr_images} />
       <div className='card-body'>
         <h2 className='card-title'>{name}</h2>
         <p className='card-text'>{description}</p>

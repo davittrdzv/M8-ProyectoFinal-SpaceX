@@ -1,3 +1,4 @@
+import Carousel from '@/components/Carousel'
 import { useSpaceXContext } from '@/hooks/useSpaceXContext'
 import { getYouTubeEmbedUrl } from '@/utilities/getYouTubeEmbedUrl'
 
@@ -13,11 +14,7 @@ const Roadster = () => {
             <h1>{roadsterInfo.name}</h1>
             {roadsterInfo.flickr_images?.length > 0 && (
               <div className='mb-4'>
-                <img
-                  src={roadsterInfo.flickr_images[0]}
-                  alt={`Image of ${roadsterInfo.name}`}
-                  className='img-fluid rounded'
-                />
+                <Carousel images={roadsterInfo.flickr_images} />
               </div>
             )}
             <p><strong>Launch Date (UTC):</strong> {new Date(roadsterInfo.launch_date_utc).toLocaleString()}</p>

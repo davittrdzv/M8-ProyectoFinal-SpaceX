@@ -1,3 +1,4 @@
+import Carousel from '@/components/Carousel'
 import { placeholderPic, handlePicError } from '@/utilities/placeholderPic'
 import { getYouTubeEmbedUrl } from '@/utilities/getYouTubeEmbedUrl'
 import { useSpaceXContext } from '@/hooks/useSpaceXContext'
@@ -15,14 +16,35 @@ const LaunchDetailsCard = ({ launch }) => {
     coresInfo,
     landpadsInfo,
   } = useSpaceXContext()
+
+  const images = [
+    ...(launch.links?.patch?.large ? [launch.links.patch.large] : []),
+    ...(launch.links?.flickr?.original || [])
+  ]
+
   return (
     <div className='card mb-4'>
-      <img
-        src={launch.links?.patch?.large || placeholderPic}
-        alt={launch.name}
-        className='card-img-top'
-        onError={handlePicError}
-      />
+      {
+        images.length > 0
+          ? (
+              images.length > 1
+                ? <Carousel images={images} />
+                : <img
+                    src={images[0]}
+                    alt={launch.name}
+                    className='card-img-top'
+                    onError={handlePicError}
+                  />
+            )
+          : (
+            <img
+              src={placeholderPic}
+              alt={launch.name}
+              className='card-img-top'
+              onError={handlePicError}
+            />
+            )
+      }
       <div className='card-body'>
         <h2 className='card-title'>{launch.name}</h2>
         <p className='card-text'><strong>Flight Number:</strong> {launch.flight_number}</p>
