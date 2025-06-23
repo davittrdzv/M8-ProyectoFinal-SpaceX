@@ -104,6 +104,14 @@ const SignUp = () => {
           </button>
         </form>
       </main>
+      <h2>Why Sign Up?</h2>
+      <p>Creating an account gives you access to exclusive features and content across the site. As a registered user, you can:</p>
+      <ul>
+        <li>Explore the live orbital positions of Starlink satellites with interactive visualization.</li>
+        <li>Watch videos of SpaceX launches directly from the Launches section.</li>
+        <li>View the iconic Tesla Roadster launch video in the Roadster section.</li>
+      </ul>
+      <p>More features may be added in the future to enhance your experience. Sign up now and explore beyond the basics.</p>
     </div>
   )
 }

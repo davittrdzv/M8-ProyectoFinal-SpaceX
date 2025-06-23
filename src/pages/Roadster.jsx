@@ -7,11 +7,13 @@ const Roadster = () => {
 
   return (
     <>
+      <h1>Elon Musk's Tesla Roadster</h1>
+      <p>In 2018, SpaceX launched Elon Musk’s personal Tesla Roadster into space aboard the Falcon Heavy’s maiden flight. It was an iconic and unconventional payload designed to showcase the rocket’s capabilities.</p>
+      <p>This section displays real-time data and details about the Roadster’s current journey through space.</p>
       {isRoadsterInfoLoading
         ? <h1>Loading...</h1>
         : (
           <div className='container my-5'>
-            <h1>{roadsterInfo.name}</h1>
             {roadsterInfo.flickr_images?.length > 0 && (
               <div className='mb-4'>
                 <Carousel images={roadsterInfo.flickr_images} />

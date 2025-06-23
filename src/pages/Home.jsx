@@ -5,15 +5,20 @@ const Home = () => {
 
   return (
     <>
-      {isCompanyInfoLoading
-        ? (
-          <h1>Loading</h1>
-          )
-        : (
-          <div className='container my-4'>
+      <div className='container my-4'>
+        <h1>Welcome to the SpaceX Explorer!</h1>
+        <p>This website offers a detailed and up-to-date overview of various SpaceX missions, vehicles, and history. As a visitor, you can explore data about rocket launches, spacecraft, and the Tesla Roadster launched into space.</p>
+        <p>On this Home page, you’ll find general information about SpaceX as a company — including its mission, founder, headquarters, number of employees, and other basic details that provide context for the rest of the content across the site.</p>
+        <p>Feel free to browse each section to learn more about SpaceX's incredible journey into space exploration!</p>
+        <img src='https://www.spacex.com/static/images/share.jpg' alt='SpaceX' />
+        {isCompanyInfoLoading
+          ? (
+            <h1>Loading</h1>
+            )
+          : (
             <div className='card shadow'>
               <div className='card-header bg-dark text-white'>
-                <h2 className='mb-0'>{companyInfo.name}</h2>
+                <h2 className='mb-0'>About {companyInfo.name}</h2>
               </div>
               <div className='card-body'>
                 <p className='mb-3'>{companyInfo.summary}</p>
@@ -81,8 +86,8 @@ const Home = () => {
                 </div>
               </div>
             </div>
-          </div>
-          )}
+            )}
+      </div>
     </>
   )
 }
