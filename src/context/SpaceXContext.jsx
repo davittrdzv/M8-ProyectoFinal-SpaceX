@@ -65,7 +65,7 @@ const SpaceXProvider = ({ children }) => {
       setLaunchesInfo(launchesResponse.data)
       setRocketsInfo(rocketsResponse.data)
       setRoadsterInfo(roadsterResponse.data)
-      setStarlinkInfo(starlinkResponse.data)
+      setStarlinkInfo(starlinkResponse.data.filter(starlink => starlink.spaceTrack.DECAYED === 0))
       setHistoryInfo(historyResponse.data)
       setLaunchpadsInfo(launchpadsResponse.data)
       setCrewInfo(crewResponse.data)
