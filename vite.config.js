@@ -8,6 +8,9 @@ export default defineConfig({
     react(),
     cesium()
   ],
+  optimizeDeps: {
+    include: ['resium', 'cesium'],
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')
