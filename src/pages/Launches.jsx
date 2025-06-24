@@ -1,4 +1,5 @@
 import LaunchSummary from '@/components/LaunchSummary'
+import Spinner from '@/components/Spinner'
 import { useSpaceXContext } from '@/hooks/useSpaceXContext'
 import { findById } from '@/utilities/findById'
 
@@ -11,7 +12,7 @@ const Launches = () => {
       <p>SpaceX has carried out numerous launches over the years, sending satellites, cargo, astronauts, and even a car into space. This section showcases a complete list of SpaceX launches, including mission names, dates, outcomes, and other key details.</p>
       <p>Explore the history of SpaceX missions and see how the company has progressed toward making space more accessible.</p>
       {isLaunchesInfoLoading && isRocketsInfoLoading && isLaunchpadsInfoLoading
-        ? <h1>Loading</h1>
+        ? <Spinner />
         : launchesInfo.map(launch => (
           <LaunchSummary
             key={launch.id}

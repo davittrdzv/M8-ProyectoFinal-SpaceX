@@ -1,5 +1,6 @@
 import { useSpaceXContext } from '@/hooks/useSpaceXContext'
 import HistoricEventCard from '@/components/HistoricEventCard'
+import Spinner from '@/components/Spinner'
 
 const History = () => {
   const { historyInfo, isHistoryInfoLoading } = useSpaceXContext()
@@ -10,7 +11,7 @@ const History = () => {
       <p>This section highlights key historical events that have shaped the company's journey and contributed to the evolution of space exploration.</p>
       {isHistoryInfoLoading
         ? (
-          <h1>Loading...</h1>
+          <Spinner />
           )
         : (
           <>

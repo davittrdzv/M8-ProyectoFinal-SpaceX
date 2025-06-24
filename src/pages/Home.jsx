@@ -1,4 +1,5 @@
 import { useSpaceXContext } from '@/hooks/useSpaceXContext'
+import Spinner from '@/components/Spinner'
 
 const Home = () => {
   const { companyInfo, isCompanyInfoLoading } = useSpaceXContext()
@@ -12,9 +13,7 @@ const Home = () => {
         <p>Feel free to browse each section to learn more about SpaceX's incredible journey into space exploration!</p>
         <img src='https://www.spacex.com/static/images/share.jpg' alt='SpaceX' />
         {isCompanyInfoLoading
-          ? (
-            <h1>Loading</h1>
-            )
+          ? <Spinner />
           : (
             <div className='card shadow'>
               <div className='card-header bg-dark text-white'>

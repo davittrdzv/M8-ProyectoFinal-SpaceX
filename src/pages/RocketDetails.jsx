@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, Navigate } from 'react-router-dom'
 import RocketDetailsCard from '@/components/RocketDetailsCard'
+import Spinner from '@/components/Spinner'
 import { getOneRocketSpaceXService } from '@/services/spaceXServices'
 
 const RocketDetails = () => {
@@ -24,13 +25,11 @@ const RocketDetails = () => {
 
   return (
     <>
-      <div>RocketDetails</div>
       {isLoading
-        ? <h1>Loading...</h1>
+        ? <Spinner />
         : rocket
           ? <RocketDetailsCard {...rocket} />
           : <Navigate to='/not-found' replace />}
-
     </>
   )
 }

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, Navigate } from 'react-router-dom'
 import LaunchDetailsCard from '@/components/LaunchDetailsCard'
+import Spinner from '@/components/Spinner'
 import { getOneLaunchSpaceXService } from '@/services/spaceXServices'
 
 const LaunchDetails = () => {
@@ -24,13 +25,11 @@ const LaunchDetails = () => {
 
   return (
     <>
-      <div>LaunchDetails</div>
       {isLoading
-        ? <h1>Loading...</h1>
+        ? <Spinner />
         : launch
           ? <LaunchDetailsCard launch={launch} />
           : <Navigate to='/not-found' replace />}
-
     </>
   )
 }

@@ -1,4 +1,5 @@
 import Carousel from '@/components/Carousel'
+import Spinner from '@/components/Spinner'
 import { Link } from 'react-router-dom'
 import { useSpaceXContext } from '@/hooks/useSpaceXContext'
 import { useAuthContext } from '@/hooks/useAuthContext'
@@ -14,7 +15,7 @@ const Roadster = () => {
       <p>In 2018, SpaceX launched Elon Musk’s personal Tesla Roadster into space aboard the Falcon Heavy’s maiden flight. It was an iconic and unconventional payload designed to showcase the rocket’s capabilities.</p>
       <p>This section displays real-time data and details about the Roadster’s current journey through space.</p>
       {isRoadsterInfoLoading
-        ? <h1>Loading...</h1>
+        ? <Spinner />
         : (
           <div className='container my-5'>
             {roadsterInfo.flickr_images?.length > 0 && (
