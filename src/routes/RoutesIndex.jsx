@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
-
+import PrivateRoutes from '@/routeGuards/PrivateRoutes'
+import PublicOnlyRoutes from '@/routeGuards/PublicOnlyRoutes'
 import About from '@/pages/About'
 import History from '@/pages/History'
 import Home from '@/pages/Home'
@@ -24,9 +25,13 @@ const RoutesIndex = () => {
       <Route path='/roadster' element={<Roadster />} />
       <Route path='/rockets' element={<Rockets />} />
       <Route path='/rockets/:id' element={<RocketDetails />} />
-      <Route path='/signin' element={<SignIn />} />
-      <Route path='/signup' element={<SignUp />} />
-      <Route path='/starlink' element={<Starlink />} />
+      <Route element={<PublicOnlyRoutes />}>
+        <Route path='/signin' element={<SignIn />} />
+        <Route path='/signup' element={<SignUp />} />
+      </Route>
+      <Route element={<PrivateRoutes />}>
+        <Route path='/starlink' element={<Starlink />} />
+      </Route>
       <Route path='*' element={<NotFound />} />
     </Routes>
   )
