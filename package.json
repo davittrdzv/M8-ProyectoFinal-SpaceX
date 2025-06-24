@@ -23,6 +23,8 @@
     "satellite.js": "^6.0.0",
     "sweetalert2": "^11.22.0",
     "sweetalert2-react-content": "^5.1.0",
+    "three": "^0.177.0",
+    "three-stdlib": "^2.36.0",
     "tslib": "^2.8.1",
     "yup": "^1.6.1"
   },
