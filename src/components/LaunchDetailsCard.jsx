@@ -2,6 +2,7 @@ import Carousel from '@/components/Carousel'
 import { placeholderPic, handlePicError } from '@/utilities/placeholderPic'
 import { getYouTubeEmbedUrl } from '@/utilities/getYouTubeEmbedUrl'
 import { useSpaceXContext } from '@/hooks/useSpaceXContext'
+import { useAuthContext } from '@/hooks/useAuthContext'
 import { findById } from '@/utilities/findById'
 import { Link } from 'react-router-dom'
 
@@ -16,6 +17,8 @@ const LaunchDetailsCard = ({ launch }) => {
     coresInfo,
     landpadsInfo,
   } = useSpaceXContext()
+
+  const { isAuthenticated } = useAuthContext()
 
   const images = [
     ...(launch.links?.patch?.large ? [launch.links.patch.large] : []),
@@ -160,32 +163,55 @@ const LaunchDetailsCard = ({ launch }) => {
               </>)
             : <></>
         )}
-        {launch.links?.flickr?.original?.length > 0 && (
-          <>
-            <img
-              src={launch.links.flickr.original[0]}
-              className='img-fluid mb-3'
-              alt='Launch Flickr'
-            />
-          </>
-        )}
-        {launch.links?.webcast && (
+        {launch.links?.webcast &&
+        (
           <>
             <h5>Launch Video</h5>
-            <div className='ratio ratio-16x9'>
-              <iframe
-                src={getYouTubeEmbedUrl(launch.links.webcast)}
-                title='Launch video'
-                allowFullScreen
-              />
-            </div>
+            {isAuthenticated
+              ? (
+                <div className='ratio ratio-16x9'>
+                  <iframe
+                    src={getYouTubeEmbedUrl(launch.links.webcast)}
+                    title='Launch video'
+                    allowFullScreen
+                  />
+                </div>)
+              : (
+                <p> The launch video is available exclusively for registered users.{' '} <Link to='/signin'>Sign in</Link> or <Link to='/signup'>create an account</Link> to watch it. </p>
+                )}
           </>
         )}
-        {launch.links?.article && (
-          <p><a href={launch.links.article} target='_blank' rel='noopener noreferrer'>Read Article</a></p>
-        )}
-        {launch.links?.wikipedia && (
-          <p>Wikipedia: <a href={launch.links.wikipedia} target='_blank' rel='noopener noreferrer'>{launch.links.wikipedia}</a></p>
+        {(launch.links?.article || launch.links?.wikipedia) && (
+          <>
+            <h5>External Links</h5>
+            <ul>
+              {launch.links?.article && (
+                <li>
+                  <strong>Article:</strong>{' '}
+                  {isAuthenticated
+                    ? (
+                      <a href={launch.links.article} target='_blank' rel='noopener noreferrer'>
+                        Read Article
+                      </a>
+                      )
+                    : (
+                      <span>
+                        The external article is available exclusively for registered users.{' '}
+                        <Link to='/signin'>Sign in</Link> or <Link to='/signup'>create an account</Link> for access.
+                      </span>
+                      )}
+                </li>
+              )}
+              {launch.links?.wikipedia && (
+                <li>
+                  <strong>Wikipedia:</strong>{' '}
+                  <a href={launch.links.wikipedia} target='_blank' rel='noopener noreferrer'>
+                    {launch.links.wikipedia}
+                  </a>
+                </li>
+              )}
+            </ul>
+          </>
         )}
       </div>
     </div>

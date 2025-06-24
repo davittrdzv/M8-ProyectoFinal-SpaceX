@@ -45,11 +45,14 @@ const NavBar = () => {
                 Roadster
               </NavLink>
             </li>
-            <li className='nav-item'>
-              <NavLink className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} aria-current='page' to='/starlink'>
-                Starlink
-              </NavLink>
-            </li>
+            {isAuthenticated &&
+              <>
+                <li className='nav-item'>
+                  <NavLink className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} aria-current='page' to='/starlink'>
+                    Starlink
+                  </NavLink>
+                </li>
+              </>}
             <li className='nav-item'>
               <NavLink className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} aria-current='page' to='/history'>
                 Historic Events
@@ -77,7 +80,7 @@ const NavBar = () => {
                 )
               : (
                 <li className='nav-item'>
-                  <NavLink className='nav-link' aria-current='page' to='/' onClick={logOutFunction}>
+                  <NavLink className='nav-link' aria-current='page' to='#' onClick={logOutFunction}>
                     Log Out
                   </NavLink>
                 </li>)}

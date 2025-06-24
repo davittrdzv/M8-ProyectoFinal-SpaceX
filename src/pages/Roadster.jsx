@@ -1,9 +1,12 @@
 import Carousel from '@/components/Carousel'
+import { Link } from 'react-router-dom'
 import { useSpaceXContext } from '@/hooks/useSpaceXContext'
+import { useAuthContext } from '@/hooks/useAuthContext'
 import { getYouTubeEmbedUrl } from '@/utilities/getYouTubeEmbedUrl'
 
 const Roadster = () => {
   const { roadsterInfo, isRoadsterInfoLoading } = useSpaceXContext()
+  const { isAuthenticated } = useAuthContext()
 
   return (
     <>
@@ -34,13 +37,22 @@ const Roadster = () => {
                 </a>
               </p>
             </div>
-            <div className='ratio ratio-16x9 my-4'>
-              <iframe
-                src={getYouTubeEmbedUrl(roadsterInfo.video)}
-                title='Roadster Launch Video'
-                allowFullScreen
-              />
-            </div>
+            {isAuthenticated
+              ? (
+                <>
+                  <h5>Launch Video</h5>
+                  <div className='ratio ratio-16x9 my-4'>
+                    <iframe
+                      src={getYouTubeEmbedUrl(roadsterInfo.video)}
+                      title='Roadster Launch Video'
+                      allowFullScreen
+                    />
+                  </div>
+                </>
+                )
+              : (
+                <p> The launch video is available exclusively for registered users.{' '} <Link to='/signin'>Sign in</Link> or <Link to='/signup'>create an account</Link> to watch it. </p>
+                )}
           </div>
           )}
     </>
