@@ -53,6 +53,8 @@ const Roadster = () => {
             {isAuthenticated
               ? (
                 <>
+                  <h5>Roadster Position Graphic</h5>
+                  <SolarSystemScene roadsterInfo={roadsterInfo} />
                   <h5>Launch Video</h5>
                   <div className='ratio ratio-16x9 my-4'>
                     <iframe
@@ -64,11 +66,8 @@ const Roadster = () => {
                 </>
                 )
               : (
-                <p> The launch video is available exclusively for registered users.{' '} <Link to='/signin'>Sign in</Link> or <Link to='/signup'>create an account</Link> to watch it. </p>
+                <p> The launch video and the Roadster Position Graphic are available exclusively for registered users.{' '} <Link to='/signin'>Sign in</Link> or <Link to='/signup'>create an account</Link> to watch them. </p>
                 )}
-            <div>
-              <SolarSystemScene roadsterInfo={roadsterInfo} />
-            </div>
           </div>
           )}
     </>
