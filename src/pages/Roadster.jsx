@@ -1,5 +1,6 @@
 import Carousel from '@/components/Carousel'
 import Spinner from '@/components/Spinner'
+import SolarSystemScene from '@/components/SolarSystemScene'
 import { Link } from 'react-router-dom'
 import { useSpaceXContext } from '@/hooks/useSpaceXContext'
 import { useAuthContext } from '@/hooks/useAuthContext'
@@ -23,12 +24,6 @@ const Roadster = () => {
                 <Carousel images={roadsterInfo.flickr_images} />
               </div>
             )}
-            <p><strong>Launch Date (UTC):</strong> {new Date(roadsterInfo.launch_date_utc).toLocaleString()}</p>
-            <p><strong>Launch Mass:</strong> {roadsterInfo.launch_mass_kg} kg</p>
-            <p><strong>Speed:</strong> {roadsterInfo.speed_kph.toLocaleString()} km/h</p>
-            <p><strong>Orbit Type:</strong> {roadsterInfo.orbit_type}</p>
-            <p><strong>Distance from Earth:</strong> {roadsterInfo.earth_distance_km.toLocaleString()} km</p>
-            <p><strong>Distance from Mars:</strong> {roadsterInfo.mars_distance_km.toLocaleString()} km</p>
             <div className='my-3'>
               <strong>Description:</strong>
               <p>{roadsterInfo.details}</p>
@@ -38,6 +33,23 @@ const Roadster = () => {
                 </a>
               </p>
             </div>
+            <h4>Launch & Current Status</h4>
+            <p><strong>Launch Date (UTC):</strong> {new Date(roadsterInfo.launch_date_utc).toLocaleString()}</p>
+            <p><strong>Launch Mass:</strong> {roadsterInfo.launch_mass_kg} kg</p>
+            <p><strong>Speed:</strong> {roadsterInfo.speed_kph.toLocaleString()} km/h</p>
+            <p><strong>Distance from Earth:</strong> {roadsterInfo.earth_distance_km.toLocaleString()} km</p>
+            <p><strong>Distance from Mars:</strong> {roadsterInfo.mars_distance_km.toLocaleString()} km</p>
+            <h4>Orbital Parameters</h4>
+            <p><strong>Orbit Type:</strong> {roadsterInfo.orbit_type}</p>
+            <p><strong>Orbital Period:</strong> {roadsterInfo.period_days.toFixed(1)} days</p>
+            <p><strong>Semi-Major Axis (AU):</strong> {roadsterInfo.semi_major_axis_au.toFixed(4)}</p>
+            <p><strong>Apoapsis (AU):</strong> {roadsterInfo.apoapsis_au.toFixed(4)}</p>
+            <p><strong>Periapsis (AU):</strong> {roadsterInfo.periapsis_au.toFixed(4)}</p>
+            <p><strong>Eccentricity:</strong> {roadsterInfo.eccentricity.toFixed(4)}</p>
+            <h4>Orbital Orientation</h4>
+            <p><strong>Inclination:</strong> {roadsterInfo.inclination.toFixed(2)}°</p>
+            <p><strong>Longitude of Ascending Node:</strong> {roadsterInfo.longitude.toFixed(2)}°</p>
+            <p><strong>Argument of Periapsis:</strong> {roadsterInfo.periapsis_arg.toFixed(2)}°</p>
             {isAuthenticated
               ? (
                 <>
@@ -54,6 +66,9 @@ const Roadster = () => {
               : (
                 <p> The launch video is available exclusively for registered users.{' '} <Link to='/signin'>Sign in</Link> or <Link to='/signup'>create an account</Link> to watch it. </p>
                 )}
+            <div>
+              <SolarSystemScene roadsterInfo={roadsterInfo} />
+            </div>
           </div>
           )}
     </>
