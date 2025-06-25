@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { useSpaceXContext } from '@/hooks/useSpaceXContext'
 import { useAuthContext } from '@/hooks/useAuthContext'
 import { getYouTubeEmbedUrl } from '@/utilities/getYouTubeEmbedUrl'
+import { standardizeDateFormat } from '@/utilities/standardizeDateFormat'
 
 const Roadster = () => {
   const { roadsterInfo, isRoadsterInfoLoading } = useSpaceXContext()
@@ -34,7 +35,7 @@ const Roadster = () => {
               </p>
             </div>
             <h4>Launch & Current Status</h4>
-            <p><strong>Launch Date (UTC):</strong> {new Date(roadsterInfo.launch_date_utc).toLocaleString()}</p>
+            <p><strong>Launch Date:</strong> {standardizeDateFormat(roadsterInfo.launch_date_utc).toLocaleString()}</p>
             <p><strong>Launch Mass:</strong> {roadsterInfo.launch_mass_kg} kg</p>
             <p><strong>Speed:</strong> {roadsterInfo.speed_kph.toLocaleString()} km/h</p>
             <p><strong>Distance from Earth:</strong> {roadsterInfo.earth_distance_km.toLocaleString()} km</p>

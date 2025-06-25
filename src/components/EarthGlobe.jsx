@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react'
 import { Viewer, Entity } from 'resium'
 import { Cartesian3, Color } from 'cesium'
+import { standardizeDateFormat } from '@/utilities/standardizeDateFormat'
 
 const EarthGlobe = ({ starlinkData }) => {
   const viewerRef = useRef()
@@ -41,7 +42,7 @@ const EarthGlobe = ({ starlinkData }) => {
               description={`
                 <p><strong>Name:</strong> ${sat.spaceTrack.OBJECT_NAME}</p>
                 <p><strong>Version:</strong> ${sat.version || 'Unknown'}</p>
-                <p><strong>Launch Date:</strong> ${sat.spaceTrack.LAUNCH_DATE}</p>
+                <p><strong>Launch Date:</strong> ${standardizeDateFormat(sat.spaceTrack.LAUNCH_DATE)}</p>
               `}
             />
           )

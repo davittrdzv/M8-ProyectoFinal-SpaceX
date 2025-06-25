@@ -1,4 +1,5 @@
 import Carousel from '@/components/Carousel'
+import { standardizeDateFormat } from '@/utilities/standardizeDateFormat'
 
 /* eslint-disable camelcase */
 const RocketDetailsCard = ({
@@ -36,7 +37,7 @@ const RocketDetailsCard = ({
           <li><strong>Boosters:</strong> {boosters}</li>
           <li><strong>Cost per launch:</strong> ${cost_per_launch.toLocaleString()}</li>
           <li><strong>Success rate:</strong> {success_rate_pct}%</li>
-          <li><strong>First flight:</strong> {first_flight}</li>
+          <li><strong>First flight:</strong> {standardizeDateFormat(first_flight)}</li>
           <li><strong>Country:</strong> {country}</li>
           <li><strong>Company:</strong> {company}</li>
           <li><strong>Wikipedia:</strong> <a href={wikipedia} target='_blank' rel='noopener noreferrer'>{wikipedia}</a></li>

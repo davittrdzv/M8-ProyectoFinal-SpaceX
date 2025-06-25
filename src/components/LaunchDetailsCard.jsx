@@ -1,6 +1,7 @@
 import Carousel from '@/components/Carousel'
 import { placeholderPic, handlePicError } from '@/utilities/placeholderPic'
 import { getYouTubeEmbedUrl } from '@/utilities/getYouTubeEmbedUrl'
+import { standardizeDateFormat } from '@/utilities/standardizeDateFormat'
 import { useSpaceXContext } from '@/hooks/useSpaceXContext'
 import { useAuthContext } from '@/hooks/useAuthContext'
 import { findById } from '@/utilities/findById'
@@ -51,7 +52,7 @@ const LaunchDetailsCard = ({ launch }) => {
       <div className='card-body'>
         <h2 className='card-title'>{launch.name}</h2>
         <p className='card-text'><strong>Flight Number:</strong> {launch.flight_number}</p>
-        <p className='card-text'><strong>Date (UTC):</strong> {launch.date_utc}</p>
+        <p className='card-text'><strong>Date:</strong> {standardizeDateFormat(launch.date_utc)}</p>
         <p className='card-text'>
           <strong>Success:</strong>{' '}
           {launch.success ? 'Successful' : 'Unsuccessful'}

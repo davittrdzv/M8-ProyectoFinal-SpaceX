@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { standardizeDateFormat } from '@/utilities/standardizeDateFormat'
 
 const RocketSummary = ({ id, name, company, country, firstFlight, picture }) => {
   return (
@@ -13,7 +14,7 @@ const RocketSummary = ({ id, name, company, country, firstFlight, picture }) => 
           Country: {country}
         </p>
         <p className='card-text'>
-          First Flight: {firstFlight}
+          First Flight: {standardizeDateFormat(firstFlight)}
         </p>
         <Link to={`/rockets/${id}`} className='btn btn-primary'>
           View Details

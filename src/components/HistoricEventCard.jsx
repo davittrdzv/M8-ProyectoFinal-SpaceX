@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useAuthContext } from '@/hooks/useAuthContext'
+import { standardizeDateFormat } from '@/utilities/standardizeDateFormat'
 
 const HistoricEventsCard = ({ title, date, details, article }) => {
   const { isAuthenticated } = useAuthContext()
@@ -10,7 +11,7 @@ const HistoricEventsCard = ({ title, date, details, article }) => {
       <div className='card-body'>
         <h6 className='card-title'>{details}</h6>
         <p className='card-text'>
-          Date: {date}
+          Date: {standardizeDateFormat(date)}
         </p>
         {article && (
           isAuthenticated

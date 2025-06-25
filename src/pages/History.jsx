@@ -19,7 +19,7 @@ const History = () => {
               <HistoricEventCard
                 key={event.id}
                 title={event.title}
-                date={new Date(event.event_date_utc).toLocaleString()}
+                date={event.event_date_utc}
                 details={event.details}
                 article={event.links.article}
               />

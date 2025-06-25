@@ -1,4 +1,5 @@
 import { placeholderPic, handlePicError } from '@/utilities/placeholderPic'
+import { standardizeDateFormat } from '@/utilities/standardizeDateFormat'
 import { Link } from 'react-router-dom'
 
 const LaunchSummary = ({ id, name, date, success, rocket, launchpad, picture }) => {
@@ -8,7 +9,7 @@ const LaunchSummary = ({ id, name, date, success, rocket, launchpad, picture }) 
       <div className='card-body'>
         <h5 className='card-title'>{name}</h5>
         <p className='card-text'>
-          Date: {date}
+          Date: {standardizeDateFormat(date)}
         </p>
         <p className='card-text'>
           Rocket: {rocket}
