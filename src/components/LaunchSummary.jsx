@@ -4,10 +4,9 @@ import { Link } from 'react-router-dom'
 
 const LaunchSummary = ({ id, name, date, success, rocket, launchpad, picture }) => {
   return (
-
     <div className='col-md-6 text-center' style={{ width: '20rem' }}>
       <Link to={`/launches/${id}`} className='text-decoration-none text-white'>
-        <h5>{name}</h5>
+        <h3>{name}</h3>
         <img src={picture || placeholderPic} className='card-img-top' alt={name} onError={handlePicError} />
       </Link>
       <ul className='list-group list-group-flush'>

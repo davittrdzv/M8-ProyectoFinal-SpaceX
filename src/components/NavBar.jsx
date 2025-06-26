@@ -80,9 +80,9 @@ const NavBar = () => {
                 )
               : (
                 <li className='nav-item'>
-                  <NavLink className='nav-link' aria-current='page' to='#' onClick={logOutFunction}>
+                  <button className='nav-link' onClick={logOutFunction}>
                     Log Out
-                  </NavLink>
+                  </button>
                 </li>)}
           </ul>
         </div>
