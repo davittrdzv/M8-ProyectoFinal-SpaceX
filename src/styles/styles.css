@@ -29,3 +29,8 @@ body {
 .logo-spacex-b rect {
   fill: var(--primary-color);
 }
+
+.compact-text {
+  margin: 0;
+  padding: 0;
+}

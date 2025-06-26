@@ -4,26 +4,30 @@ import { Link } from 'react-router-dom'
 
 const LaunchSummary = ({ id, name, date, success, rocket, launchpad, picture }) => {
   return (
-    <div className='card' style={{ width: '18rem' }}>
-      <img src={picture || placeholderPic} className='card-img-top' alt={name} onError={handlePicError} />
-      <div className='card-body'>
-        <h5 className='card-title'>{name}</h5>
-        <p className='card-text'>
-          Date: {standardizeDateFormat(date)}
-        </p>
-        <p className='card-text'>
-          Rocket: {rocket}
-        </p>
-        <p className='card-text'>
-          Location: {launchpad}
-        </p>
-        <p className='card-text'>
-          Status: {success}
-        </p>
-        <Link to={`/launches/${id}`} className='btn btn-primary'>
-          View Details
-        </Link>
-      </div>
+
+    <div className='col-md-6 text-center' style={{ width: '20rem' }}>
+      <Link to={`/launches/${id}`} className='text-decoration-none text-white'>
+        <h5>{name}</h5>
+        <img src={picture || placeholderPic} className='card-img-top' alt={name} onError={handlePicError} />
+      </Link>
+      <ul className='list-group list-group-flush'>
+        <li className='list-group-item'>
+          <strong>Date:</strong>
+          <p className='compact-text'>{standardizeDateFormat(date)}</p>
+        </li>
+        <li className='list-group-item'>
+          <strong>Rocket:</strong>
+          <p className='compact-text'>{rocket}</p>
+        </li>
+        <li className='list-group-item'>
+          <strong>Location:</strong>
+          <p className='compact-text'>{launchpad}</p>
+        </li>
+        <li className='list-group-item'>
+          <strong>Status:</strong>
+          <p className='compact-text'>{success}</p>
+        </li>
+      </ul>
     </div>
   )
 }

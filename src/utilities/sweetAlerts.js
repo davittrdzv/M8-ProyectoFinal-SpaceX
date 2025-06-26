@@ -7,9 +7,9 @@ const swalSuccess = (message) => {
   return mySwal.fire({
     title: `${message}`,
     icon: 'success',
-    confirmButtonColor: '#FFD700',
-    background: 'black',
-    color: '#ffffff',
+    confirmButtonColor: '#A9A9A9',
+    background: '#000000',
+    color: '#FFFFFF',
   })
 }
 
@@ -19,9 +19,9 @@ const swalError = (message, error) => {
     text: `${message}`,
     footer: `${error}`,
     icon: 'error',
-    confirmButtonColor: '#FFD700',
-    background: 'black',
-    color: '#ffffff',
+    confirmButtonColor: '#A9A9A9',
+    background: '#000000',
+    color: '#FFFFFF',
   })
 }
 
@@ -30,8 +30,8 @@ const swalLoading = (message = 'Awaiting server response, please wait, it may ta
     title: message,
     allowOutsideClick: false,
     allowEscapeKey: false,
-    background: 'black',
-    color: '#ffffff',
+    background: '#000000',
+    color: '#FFFFFF',
     didOpen: () => {
       Swal.showLoading()
     }
