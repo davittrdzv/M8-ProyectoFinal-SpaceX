@@ -5,7 +5,7 @@ const NavBar = () => {
   const { isAuthenticated, logOutFunction } = useAuthContext()
   return (
     <nav
-      className='navbar navbar-expand-md navbar-dark bg-dark'
+      className='navbar navbar-expand-md fixed-top navbar-dark bg-dark'
       aria-label='Fourth navbar example'
     >
       <div className='container-fluid'>

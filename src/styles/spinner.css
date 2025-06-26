@@ -1,8 +1,8 @@
 .spinner {
   width: 60px;
   height: 60px;
-  border: 8px solid #A9A9A9;
-  border-top: 8px solid white;
+  border: 8px solid var(--tertiary-color);
+  border-top: 8px solid var(--secondary-color);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
