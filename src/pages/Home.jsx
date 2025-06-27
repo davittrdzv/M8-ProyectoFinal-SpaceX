@@ -1,4 +1,5 @@
-import xLogoBlack from '@/assets/xLogoBlack.png'
+import xLogoHandleEM from '@/assets/xLogoHandleEM.png'
+import xLogoHandleSX from '@/assets/xLogoHandleSX.png'
 import { useSpaceXContext } from '@/hooks/useSpaceXContext'
 import Spinner from '@/components/Spinner'
 import SpaceXLogo from '@/components/SpaceXLogo'
@@ -69,12 +70,12 @@ const Home = () => {
                       </li>
                       <li className='list-group-item'>
                         <a href={companyInfo.links.twitter} target='_blank' rel='noopener noreferrer' title='SpaceX X Profile'>
-                          <img src={xLogoBlack} />
+                          <img src={xLogoHandleSX} />
                         </a>
                       </li>
                       <li className='list-group-item'>
                         <a href={companyInfo.links.elon_twitter} target='_blank' rel='noopener noreferrer' title='Elon Musk X Profile'>
-                          <img src={xLogoBlack} />
+                          <img src={xLogoHandleEM} />
                         </a>
                       </li>
                     </ul>

@@ -34,3 +34,14 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.btn-custom {
+  background-color: var(--tertiary-color) !important;
+  color: var(--primary-color) !important;
+  transition: background-color 0.2s ease;
+}
+
+.btn-custom:hover {
+  background-color: #909090 !important;
+  color: var(--secondary-color) !important;
+}

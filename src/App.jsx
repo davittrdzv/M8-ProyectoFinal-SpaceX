@@ -12,7 +12,7 @@ const App = () => {
       <AuthProvider>
         <SpaceXProvider>
           <NavBar />
-          <SpaceXLogo className='logo-spacex-w mb-4 mt-custom' />
+          <SpaceXLogo className='logo-spacex-w mb-4 mt-custom mx-auto d-block' />
           <RoutesIndex />
         </SpaceXProvider>
       </AuthProvider>

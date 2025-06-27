@@ -97,7 +97,7 @@ const SignUp = () => {
             <p className='text-center error-msg mb-0'>{errors.password?.message}</p>
           </div>
           <button
-            className='btn btn-primary w-100 py-2'
+            className='btn btn-custom w-100 py-2'
             type='submit'
           >
             Sign Up

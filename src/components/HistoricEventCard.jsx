@@ -6,28 +6,32 @@ const HistoricEventsCard = ({ title, date, details, article }) => {
   const { isAuthenticated } = useAuthContext()
 
   return (
-    <div className='card mt-1'>
-      <h5 className='card-header'>{title}</h5>
-      <div className='card-body'>
-        <h6 className='card-title'>{details}</h6>
-        <p className='card-text'>
-          Date: {standardizeDateFormat(date)}
-        </p>
+    <div className='col-md-15 text-center mt-2'>
+      <h3>{title}</h3>
+      <ul className='list-group list-group-flush'>
+        <li className='list-group-item'>
+          <strong>Date:</strong>{' '}{standardizeDateFormat(date)}
+        </li>
+        <li className='list-group-item'>
+          {details}
+        </li>
         {article && (
           isAuthenticated
             ? (
-              <a href={article} className='btn btn-primary' target='_blank' rel='noopener noreferrer'>
-                Article
-              </a>
+              <li className='list-group-item'>
+                <a href={article} className='btn btn-custom' target='_blank' rel='noopener noreferrer'>
+                  Article
+                </a>
+              </li>
               )
             : (
-              <span>
+              <li className='list-group-item'>
                 The external article is available exclusively for registered users.{' '}
-                <Link to='/signin'>Sign in</Link> or <Link to='/signup'>create an account</Link> for access.
-              </span>
+                <Link to='/signin' className='text-black'>Sign in</Link> or <Link to='/signup' className='text-black'>create an account</Link> for access.
+              </li>
               )
         )}
-      </div>
+      </ul>
     </div>
   )
 }

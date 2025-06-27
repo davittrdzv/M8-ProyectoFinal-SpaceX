@@ -7,9 +7,11 @@ const swalSuccess = (message) => {
   return mySwal.fire({
     title: `${message}`,
     icon: 'success',
-    confirmButtonColor: '#A9A9A9',
     background: '#000000',
     color: '#FFFFFF',
+    customClass: {
+      confirmButton: 'btn-custom'
+    }
   })
 }
 
@@ -19,9 +21,11 @@ const swalError = (message, error) => {
     text: `${message}`,
     footer: `${error}`,
     icon: 'error',
-    confirmButtonColor: '#A9A9A9',
     background: '#000000',
     color: '#FFFFFF',
+    customClass: {
+      confirmButton: 'btn-custom'
+    }
   })
 }
 
