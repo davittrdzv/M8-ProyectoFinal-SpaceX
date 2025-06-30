@@ -1,11 +1,13 @@
 import { useSpaceXContext } from '@/hooks/useSpaceXContext'
 import RocketSummary from '@/components/RocketSummary'
 import Spinner from '@/components/Spinner'
+import SpaceXLogo from '@/components/SpaceXLogo'
 
 const Rockets = () => {
   const { rocketsInfo, isRocketsInfoLoading } = useSpaceXContext()
   return (
     <>
+      <SpaceXLogo className='logo-spacex-w mb-4 mt-custom mx-auto d-block' />
       <div className='container-fluid text-center'>
         <h1>Rockets</h1>
         <p>SpaceX rockets are the backbone of its space missions. From the reliable Falcon 9 to the powerful Falcon Heavy and the next-generation Starship, these launch vehicles are designed to deliver satellites, cargo, and humans into orbit — and beyond.</p>

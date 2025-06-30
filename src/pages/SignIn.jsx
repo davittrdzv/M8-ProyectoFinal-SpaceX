@@ -37,7 +37,7 @@ const SignIn = () => {
     }
   }
   return (
-    <div className='border-top'>
+    <div className='mt-custom'>
       <main className='form-signin w-100 m-auto'>
         <div className='card mt-2 mb-3'>
           <h1 className='text-center'>Hi Guest!</h1>

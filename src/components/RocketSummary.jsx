@@ -5,7 +5,7 @@ const RocketSummary = ({ id, name, company, country, firstFlight, picture }) => 
   return (
     <div className='col-md-6 text-center' style={{ width: '40rem' }}>
       <Link to={`/rockets/${id}`} className='text-decoration-none text-white'>
-        <h3>{name}</h3>
+        <h3 className='border-custom'>{name}</h3>
         <img src={picture} className='card-img-top' alt={name} />
       </Link>
       <ul className='list-group list-group-flush'>

@@ -9,6 +9,7 @@ const Home = () => {
 
   return (
     <>
+      <SpaceXLogo className='logo-spacex-w mb-4 mt-custom mx-auto d-block' />
       <div className='container-fluid text-center'>
         <h1>Welcome to the SpaceX Explorer!</h1>
         <p>This website offers a detailed and up-to-date overview of various SpaceX missions, vehicles, and history. As a visitor, you can explore data about rocket launches, spacecraft, and the Tesla Roadster launched into space.</p>
@@ -25,7 +26,7 @@ const Home = () => {
                 <p>{companyInfo.summary}</p>
                 <div className='row mt-2'>
                   <div className='col-md-6'>
-                    <h3>General Information</h3>
+                    <h3 className='border-custom'>General Information</h3>
                     <ul className='list-group list-group-flush'>
                       <li className='list-group-item'><strong>Founder:</strong> {companyInfo.founder}</li>
                       <li className='list-group-item'><strong>Founded:</strong> {companyInfo.founded}</li>
@@ -34,7 +35,7 @@ const Home = () => {
                     </ul>
                   </div>
                   <div className='col-md-6'>
-                    <h3>Location & Operations</h3>
+                    <h3 className='border-custom'>Location & Operations</h3>
                     <ul className='list-group list-group-flush'>
                       <li className='list-group-item'>
                         <strong>Headquarters:</strong> {companyInfo.headquarters.address}, {companyInfo.headquarters.city}, {companyInfo.headquarters.state}
@@ -47,7 +48,7 @@ const Home = () => {
                 </div>
                 <div className='row mt-2'>
                   <div className='col-md-6'>
-                    <h3>Executive Team</h3>
+                    <h3 className='border-custom'>Executive Team</h3>
                     <ul className='list-group list-group-flush'>
                       <li className='list-group-item'><strong>CEO:</strong> {companyInfo.ceo}</li>
                       <li className='list-group-item'><strong>CTO:</strong> {companyInfo.cto}</li>
@@ -56,26 +57,26 @@ const Home = () => {
                     </ul>
                   </div>
                   <div className='col-md-6'>
-                    <h3>External Links</h3>
+                    <h3 className='border-custom'>External Links</h3>
                     <ul className='list-group list-group-flush'>
                       <li className='list-group-item'>
                         <a href={companyInfo.links.website} target='_blank' rel='noopener noreferrer' title='SpaceX Official Website'>
-                          <SpaceXLogo className='logo-spacex-b' />
+                          <SpaceXLogo className='logo-spacex-b home-pics' />
                         </a>
                       </li>
                       <li className='list-group-item'>
                         <a href={companyInfo.links.flickr} target='_blank' rel='noopener noreferrer' title='SpaceX flickr'>
-                          <img src='https://www.flickrhelp.com/hc/article_attachments/4419907707668/unnamed__2_.png' />
+                          <img src='https://www.flickrhelp.com/hc/article_attachments/4419907707668/unnamed__2_.png' className='home-pics' />
                         </a>
                       </li>
                       <li className='list-group-item'>
                         <a href={companyInfo.links.twitter} target='_blank' rel='noopener noreferrer' title='SpaceX X Profile'>
-                          <img src={xLogoHandleSX} />
+                          <img src={xLogoHandleSX} className='home-pics' />
                         </a>
                       </li>
                       <li className='list-group-item'>
                         <a href={companyInfo.links.elon_twitter} target='_blank' rel='noopener noreferrer' title='Elon Musk X Profile'>
-                          <img src={xLogoHandleEM} />
+                          <img src={xLogoHandleEM} className='home-pics' />
                         </a>
                       </li>
                     </ul>

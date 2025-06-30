@@ -18,6 +18,11 @@ body {
     margin-top: 4.5rem !important;
 }
 
+.border-custom {
+  border: 2px solid var(--tertiary-color);
+  border-radius: 5px;
+}
+
 .logo-spacex-w path,
 .logo-spacex-w polygon,
 .logo-spacex-w rect {
@@ -44,4 +49,27 @@ body {
 .btn-custom:hover {
   background-color: #909090 !important;
   color: var(--secondary-color) !important;
+}
+
+.github-icon {
+  transition: transform 0.3s ease, fill 0.3s ease;
+  cursor: pointer;
+}
+
+.github-icon:hover {
+  transform: scale(1.1);
+}
+
+.about-pic {
+  width: 40%;
+}
+
+@media only screen and (max-width: 832px) {
+  .about-pic {
+  width: 75%;
+}
+}
+
+.home-pics {
+  width: 30%;
 }

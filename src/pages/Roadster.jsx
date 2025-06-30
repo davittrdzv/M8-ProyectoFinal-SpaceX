@@ -6,6 +6,7 @@ import { useSpaceXContext } from '@/hooks/useSpaceXContext'
 import { useAuthContext } from '@/hooks/useAuthContext'
 import { getYouTubeEmbedUrl } from '@/utilities/getYouTubeEmbedUrl'
 import { standardizeDateFormat } from '@/utilities/standardizeDateFormat'
+import SpaceXLogo from '@/components/SpaceXLogo'
 
 const Roadster = () => {
   const { roadsterInfo, isRoadsterInfoLoading } = useSpaceXContext()
@@ -13,6 +14,7 @@ const Roadster = () => {
 
   return (
     <>
+      <SpaceXLogo className='logo-spacex-w mb-4 mt-custom mx-auto d-block' />
       <div className='container-fluid text-center'>
         <h1>Elon Musk's Tesla Roadster</h1>
         <p>In 2018, SpaceX launched Elon Musk’s personal Tesla Roadster into space aboard the Falcon Heavy’s maiden flight. It was an iconic and unconventional payload designed to showcase the rocket’s capabilities.</p>
@@ -31,8 +33,8 @@ const Roadster = () => {
               <p>{roadsterInfo.details}</p>
             </div>
             <div className='row mt-2'>
-              <div className='col-md-3 text-center mt-2'>
-                <h3>Launch & Current Status</h3>
+              <div className='col-md-3 text-center mt-2 mx-auto'>
+                <h3 className='border-custom'>Launch & Current Status</h3>
                 <ul className='list-group list-group-flush'>
                   <li className='list-group-item'>
                     <strong>Launch Date:</strong>
@@ -56,8 +58,8 @@ const Roadster = () => {
                   </li>
                 </ul>
               </div>
-              <div className='col-md-3 text-center mt-2'>
-                <h3>Orbital Parameters</h3>
+              <div className='col-md-3 text-center mt-2 mx-auto'>
+                <h3 className='border-custom'>Orbital Parameters</h3>
                 <ul className='list-group list-group-flush'>
                   <li className='list-group-item'>
                     <strong>Orbit Type:</strong>
@@ -85,8 +87,8 @@ const Roadster = () => {
                   </li>
                 </ul>
               </div>
-              <div className='col-md-3 text-center mt-2'>
-                <h3>Orbital Orientation</h3>
+              <div className='col-md-3 text-center mt-2 mx-auto'>
+                <h3 className='border-custom'>Orbital Orientation</h3>
                 <ul className='list-group list-group-flush'>
                   <li className='list-group-item'>
                     <strong>Inclination:</strong>
@@ -105,12 +107,12 @@ const Roadster = () => {
               {isAuthenticated
                 ? (
                   <>
-                    <div className='col-md-8 text-center'>
-                      <h3>Roadster Position Graphic</h3>
+                    <div className='col-md-8 text-center mt-2 mx-auto'>
+                      <h3 className='border-custom'>Roadster Position Graphic</h3>
                       <SolarSystemScene roadsterInfo={roadsterInfo} />
                     </div>
-                    <div className='col-md-8 text-center mt-2'>
-                      <h3>Launch Video</h3>
+                    <div className='col-md-8 text-center mt-4 mx-auto'>
+                      <h3 className='border-custom'>Launch Video</h3>
                       <div className='ratio ratio-16x9 my-4'>
                         <iframe
                           src={getYouTubeEmbedUrl(roadsterInfo.video)}
@@ -123,7 +125,7 @@ const Roadster = () => {
                   )
                 : (
                   <div className='text-center mt-2'>
-                    <h3>Want to watch the video and the Roadster Position Graphic?{' '} <Link to='/signin' className='text-white'>Sign in</Link> or <Link to='/signup' className='text-white'>create an account!</Link></h3>
+                    <h3>Want to watch the launch video and the Roadster Position Graphic?{' '} <Link to='/signin' className='text-white'>Sign in</Link> or <Link to='/signup' className='text-white'>create an account!</Link></h3>
                   </div>
                   )}
             </div>

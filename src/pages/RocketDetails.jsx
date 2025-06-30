@@ -3,6 +3,7 @@ import { useParams, Navigate } from 'react-router-dom'
 import RocketDetailsCard from '@/components/RocketDetailsCard'
 import Spinner from '@/components/Spinner'
 import { getOneRocketSpaceXService } from '@/services/spaceXServices'
+import SpaceXLogo from '@/components/SpaceXLogo'
 
 const RocketDetails = () => {
   const { id } = useParams()
@@ -25,6 +26,7 @@ const RocketDetails = () => {
 
   return (
     <>
+      <SpaceXLogo className='logo-spacex-w mb-4 mt-custom mx-auto d-block' />
       {isLoading
         ? <Spinner />
         : rocket

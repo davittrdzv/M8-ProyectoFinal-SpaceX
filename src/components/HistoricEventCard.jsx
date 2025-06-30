@@ -7,7 +7,7 @@ const HistoricEventsCard = ({ title, date, details, article }) => {
 
   return (
     <div className='col-md-15 text-center mt-2'>
-      <h3>{title}</h3>
+      <h3 className='border-custom'>{title}</h3>
       <ul className='list-group list-group-flush'>
         <li className='list-group-item'>
           <strong>Date:</strong>{' '}{standardizeDateFormat(date)}

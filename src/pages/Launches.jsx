@@ -2,12 +2,14 @@ import LaunchSummary from '@/components/LaunchSummary'
 import Spinner from '@/components/Spinner'
 import { useSpaceXContext } from '@/hooks/useSpaceXContext'
 import { findById } from '@/utilities/findById'
+import SpaceXLogo from '@/components/SpaceXLogo'
 
 const Launches = () => {
   const { launchesInfo, isLaunchesInfoLoading, rocketsInfo, isRocketsInfoLoading, launchpadsInfo, isLaunchpadsInfoLoading } = useSpaceXContext()
 
   return (
     <>
+      <SpaceXLogo className='logo-spacex-w mb-4 mt-custom mx-auto d-block' />
       <div className='container-fluid text-center'>
         <h1>Launches</h1>
         <p>SpaceX has carried out numerous launches over the years, sending satellites, cargo, astronauts, and even a car into space. This section showcases a complete list of SpaceX launches, including mission names, dates, outcomes, and other key details.</p>

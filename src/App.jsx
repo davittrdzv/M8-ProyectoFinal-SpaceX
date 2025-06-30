@@ -4,7 +4,6 @@ import Footer from '@/components/Footer'
 import RoutesIndex from '@/routes/RoutesIndex'
 import { SpaceXProvider } from '@/context/SpaceXContext.jsx'
 import { AuthProvider } from '@/context/AuthContext.jsx'
-import SpaceXLogo from '@/components/SpaceXLogo'
 
 const App = () => {
   return (
@@ -12,7 +11,6 @@ const App = () => {
       <AuthProvider>
         <SpaceXProvider>
           <NavBar />
-          <SpaceXLogo className='logo-spacex-w mb-4 mt-custom mx-auto d-block' />
           <RoutesIndex />
         </SpaceXProvider>
       </AuthProvider>
