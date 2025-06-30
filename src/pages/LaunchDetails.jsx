@@ -27,11 +27,13 @@ const LaunchDetails = () => {
   return (
     <>
       <SpaceXLogo className='logo-spacex-w mb-4 mt-custom mx-auto d-block' />
-      {isLoading
-        ? <Spinner />
-        : launch
-          ? <LaunchDetailsCard launch={launch} />
-          : <Navigate to='/not-found' replace />}
+      <div className='container-fluid text-center'>
+        {isLoading
+          ? <Spinner />
+          : launch
+            ? <LaunchDetailsCard launch={launch} />
+            : <Navigate to='/not-found' replace />}
+      </div>
     </>
   )
 }

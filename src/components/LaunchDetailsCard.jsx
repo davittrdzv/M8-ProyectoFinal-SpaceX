@@ -27,7 +27,8 @@ const LaunchDetailsCard = ({ launch }) => {
   ]
 
   return (
-    <div className='card mb-4'>
+    <>
+      <h1>{launch.name}</h1>
       {
         images.length > 0
           ? (
@@ -49,173 +50,245 @@ const LaunchDetailsCard = ({ launch }) => {
             />
             )
       }
-      <div className='card-body'>
-        <h2 className='card-title'>{launch.name}</h2>
-        <p className='card-text'><strong>Flight Number:</strong> {launch.flight_number}</p>
-        <p className='card-text'><strong>Date:</strong> {standardizeDateFormat(launch.date_utc)}</p>
-        <p className='card-text'>
-          <strong>Success:</strong>{' '}
-          {launch.success ? 'Successful' : 'Unsuccessful'}
-        </p>
+      {launch.details && <h3>{launch.details}</h3>}
+      <div className='estemero'>
+        <div className='col-md-3 text-center'>
+          <h3 className='border-custom'>{launch.name}</h3>
+          <ul className='list-group list-group-flush'>
+            <li className='list-group-item'>
+              <strong>Flight Number:</strong>
+              <p className='compact-text'>{launch.flight_number}</p>
+            </li>
+            <li className='list-group-item'>
+              <strong>Date:</strong>
+              <p className='compact-text'>{standardizeDateFormat(launch.date_utc)}</p>
+            </li>
+            <li className='list-group-item'>
+              <strong>Success:</strong>
+              <p className='compact-text'>{launch.success ? 'Successful' : 'Unsuccessful'}</p>
+            </li>
+            <li className='list-group-item'>
+              <strong>Rocket:</strong>
+              <p className='compact-text'>
+                <Link to={`/rockets/${launch.rocket}`} className='btn btn-custom'>{findById(rocketsInfo, launch.rocket)?.name}</Link>
+              </p>
+            </li>
+          </ul>
+        </div>
         {!launch.success && launch.failures?.length > 0 && (
-          <>
-            <h5>Failures</h5>
-            <ul>
-              {launch.failures.map((fail, index) => (
-                <li key={index}>
-                  <p><strong>Time:</strong> {fail.time}s</p>
-                  {fail.altitude && <p><strong>Altitude:</strong> {fail.altitude}m</p>}
-                  <p><strong>Reason:</strong> {fail.reason}</p>
+          launch.failures.map((fail, index) => (
+            <div className='col-md-3 text-center mt-2' key={index}>
+              <h3 className='border-custom'>Failures</h3>
+              <ul className='list-group list-group-flush'>
+                <li className='list-group-item'>
+                  <strong>Time:</strong>
+                  <p className='compact-text'>{fail.time} s</p>
                 </li>
-              ))}
-            </ul>
-          </>
-        )}
-        {launch.details && <p className='card-text'><strong>Details:</strong> {launch.details}</p>}
-        <strong>Rocket:</strong> {' '}
-        <Link to={`/rockets/${launch.rocket}`} className='card-text'>{findById(rocketsInfo, launch.rocket)?.name}</Link>
-        {launch.crew?.length > 0 && (
-          <>
-            <h5>Crew</h5>
-            {launch.crew.map((crewMember, index) => {
-              const crewData = findById(crewInfo, crewMember.crew)
-              return (
-                <div className='card' key={index}>
-                  {crewData &&
-                    <>
-                      <img src={crewData.image} alt={crewData.name} />
-                      <p>{crewData.name}</p>
-                      <p>Agency: {crewData.agency}</p>
-                      <p>Role: {crewMember.role}</p>
-                    </>}
-                </div>
-              )
-            })}
-          </>
-        )}
-        {launch.ships?.length > 0 && (
-          <>
-            <h5>Ships</h5>
-            <ul>
-              {launch.ships.map((ship, index) => (
-                <li key={index}>{findById(shipsInfo, ship)?.legacy_id}.</li>
-              ))}
-            </ul>
-          </>
-        )}
-        {launch.capsules?.length > 0 && (
-          <>
-            <h5>Capsules</h5>
-            <ul>
-              {launch.capsules.map((capsule, index) => (
-                <li key={index}>
-                  {findById(capsulesInfo, capsule)?.serial} {'('}{findById(capsulesInfo, capsule)?.type}{').'}
+                {fail.altitude &&
+                  <li className='list-group-item'>
+                    <strong>Altitude:</strong>
+                    <p className='compact-text'>{fail.altitude} m</p>
+                  </li>}
+                <li className='list-group-item'>
+                  <strong>Reason:</strong>
+                  <p className='compact-text'>{fail.reason}</p>
                 </li>
-              ))}
-            </ul>
-          </>
+              </ul>
+            </div>
+          ))
         )}
         {launch.payloads?.length > 0 && (
           <>
-            <h5>Payloads</h5>
-            <ul>
-              {launch.payloads.map((payload, index) => (
-                <li key={index}>
-                  {findById(payloadsInfo, payload)?.name}
-                  <p>{findById(payloadsInfo, payload)?.type}</p>
+            <div className='col-md-3 text-center mt-2'>
+              <h3 className='border-custom'>Payloads</h3>
+              <ul className='list-group list-group-flush'>
+                {launch.payloads.map((payload, index) => (
+                  <li key={index} className='list-group-item'>
+                    <strong>Name:</strong>
+                    <p className='compact-text'>{findById(payloadsInfo, payload)?.name}</p>
+                    <strong>Type:</strong>
+                    <p className='compact-text'>{findById(payloadsInfo, payload)?.type}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </>
+        )}
+        {launch.ships?.length > 0 && (
+          <div className='col-md-3 text-center mt-2'>
+            <h3 className='border-custom'>Ships</h3>
+            <ul className='list-group list-group-flush'>
+              {launch.ships.map((ship, index) => (
+                <li className='list-group-item' key={index}>
+                  <strong>Name:</strong>
+                  <p className='compact-text'>{findById(shipsInfo, ship)?.legacy_id}</p>
                 </li>
               ))}
             </ul>
-          </>
+          </div>
+        )}
+        {launch.capsules?.length > 0 && (
+          <div className='col-md-3 text-center mt-2'>
+            <h3 className='border-custom'>Capsules</h3>
+            <ul className='list-group list-group-flush'>
+              {launch.capsules.map((capsule, index) => (
+                <li key={index} className='list-group-item'>
+                  <strong>Serial:</strong>
+                  <p className='compact-text'>{findById(capsulesInfo, capsule)?.serial}</p>
+                  <strong>Type:</strong>
+                  <p className='compact-text'>{findById(capsulesInfo, capsule)?.type}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
         {launch.launchpad && (
-          <p className='card-text'>
-            <strong>Launchpad:</strong> {findById(launchpadsInfo, launch.launchpad)?.full_name}{'.'}
-          </p>
+          <div className='col-md-3 text-center mt-2'>
+            <h3 className='border-custom'>Launchpad</h3>
+            <ul className='list-group list-group-flush'>
+              <li className='list-group-item'>
+                <strong>Name:</strong>
+                <p className='compact-text'>{findById(launchpadsInfo, launch.launchpad)?.full_name}</p>
+              </li>
+            </ul>
+          </div>
         )}
         {launch.cores?.length > 0 && (
           launch.cores?.some(core => core.core !== null)
             ? (
               <>
-                <h5>Cores</h5>
                 {launch.cores.map((core, index) => (
-                  <div key={index}>
-                    <p><strong>Core:</strong> {findById(coresInfo, core.core)?.serial}{'.'}</p>
-                    <p><strong>Flight:</strong> {core.flight}</p>
-                    {core.landing_attempt && (
-                      <>
-                        <p><strong>Landing Attempt:</strong> Yes</p>
-                        <p><strong>Landing Success:</strong> {core.landing_success ? 'Successful' : 'Unsuccessful'}</p>
-                        {core.landing_type && <p><strong>Landing Type:</strong> {core.landing_type}</p>}
-                        {core.landpad && (() => {
-                          const landpadData = findById(landpadsInfo, core.landpad)
-                          return landpadData && (
-                            <div className='mb-2'>
-                              <p><strong>Landpad:</strong> {landpadData.name} ({landpadData.full_name})</p>
-                              <p><strong>Locality:</strong> {landpadData.locality}</p>
-                              <p><strong>Region:</strong> {landpadData.region}</p>
-                            </div>
-                          )
-                        })()}
-                      </>
-                    )}
+                  <div key={index} className='col-md-3 text-center mt-2'>
+                    <h3 className='border-custom'>Core {findById(coresInfo, core.core)?.serial}</h3>
+                    <ul className='list-group list-group-flush'>
+                      <li className='list-group-item'>
+                        <strong>Flight:</strong>
+                        <p className='compact-text'>{core.flight}</p>
+                      </li>
+                      {core.landing_attempt && (
+                        <>
+                          <li className='list-group-item'>
+                            <strong>Landing Attempt:</strong>
+                            <p className='compact-text'>Yes</p>
+                          </li>
+                          <li className='list-group-item'>
+                            <strong>Landing Success:</strong>
+                            <p className='compact-text'>{core.landing_success ? 'Successful' : 'Unsuccessful'}</p>
+                          </li>
+                          {core.landing_type &&
+                            <li className='list-group-item'>
+                              <strong>Landing Type:</strong>
+                              <p className='compact-text'>{core.landing_type}</p>
+                            </li>}
+                          {core.landpad && (() => {
+                            const landpadData = findById(landpadsInfo, core.landpad)
+                            return landpadData && (
+                              <>
+                                <li className='list-group-item'>
+                                  <strong>Landpad:</strong>
+                                  <p className='compact-text'>{landpadData.name} ({landpadData.full_name})</p>
+                                </li>
+                                <li className='list-group-item'>
+                                  <strong>Locality:</strong>
+                                  <p className='compact-text'>{landpadData.locality}</p>
+                                </li>
+                                <li className='list-group-item'>
+                                  <strong>Region:</strong>
+                                  <p className='compact-text'>{landpadData.region}</p>
+                                </li>
+                              </>
+                            )
+                          })()}
+                        </>
+                      )}
+                    </ul>
                   </div>
                 ))}
               </>)
             : <></>
         )}
-        {launch.links?.webcast &&
-        (
-          <>
-            <h5>Launch Video</h5>
-            {isAuthenticated
-              ? (
-                <div className='ratio ratio-16x9'>
-                  <iframe
-                    src={getYouTubeEmbedUrl(launch.links.webcast)}
-                    title='Launch video'
-                    allowFullScreen
-                  />
-                </div>)
-              : (
-                <p> The launch video is available exclusively for registered users.{' '} <Link to='/signin'>Sign in</Link> or <Link to='/signup'>create an account</Link> to watch it. </p>
-                )}
-          </>
-        )}
         {(launch.links?.article || launch.links?.wikipedia) && (
-          <>
-            <h5>External Links</h5>
-            <ul>
+          <div className='col-md-3 text-center mt-2'>
+            <h3 className='border-custom'>External Links</h3>
+            <ul className='list-group list-group-flush'>
               {launch.links?.article && (
-                <li>
-                  <strong>Article:</strong>{' '}
+                <li className='list-group-item'>
                   {isAuthenticated
                     ? (
-                      <a href={launch.links.article} target='_blank' rel='noopener noreferrer'>
+                      <a href={launch.links.article} target='_blank' rel='noopener noreferrer' className='btn btn-custom'>
                         Read Article
                       </a>
                       )
                     : (
-                      <span>
-                        The external article is available exclusively for registered users.{' '}
-                        <Link to='/signin'>Sign in</Link> or <Link to='/signup'>create an account</Link> for access.
-                      </span>
+                      <p className='compact-text'>The external article is available exclusively for registered users.{' '}
+                        <Link to='/signin' className='text-black'>Sign in</Link> or <Link to='/signup' className='text-black'>create an account</Link> for access.
+                      </p>
                       )}
                 </li>
               )}
               {launch.links?.wikipedia && (
-                <li>
-                  <strong>Wikipedia:</strong>{' '}
-                  <a href={launch.links.wikipedia} target='_blank' rel='noopener noreferrer'>
-                    {launch.links.wikipedia}
+                <li className='list-group-item'>
+                  <a href={launch.links.wikipedia} target='_blank' rel='noopener noreferrer' className='btn btn-custom'>
+                    Wikipedia
                   </a>
                 </li>
               )}
             </ul>
-          </>
+          </div>
         )}
       </div>
-    </div>
+      {launch.crew?.length > 0 && (
+        <>
+          <h3 className='border-custom'>Crew</h3>
+          <div className='estemero'>
+            {launch.crew.map((crewMember, index) => {
+              const crewData = findById(crewInfo, crewMember.crew)
+              return (
+                <div className='col-md-3 text-center mt-2' key={index}>
+                  {crewData &&
+                    <>
+                      <h3 className='border-custom'>{crewData.name}</h3>
+                      <img src={crewData.image} alt={crewData.name} style={{ width: '19rem' }} />
+                      <ul className='list-group list-group-flush'>
+                        <li className='list-group-item'>
+                          <strong>Agency:</strong>
+                          <p className='compact-text'>{crewData.agency}</p>
+                        </li>
+                        <li className='list-group-item'>
+                          <strong>Role:</strong>
+                          <p className='compact-text'>{crewMember.role}</p>
+                        </li>
+                      </ul>
+                    </>}
+                </div>
+              )
+            })}
+          </div>
+        </>
+      )}
+      {launch.links?.webcast &&
+        (
+          <>
+            <h3 className='border-custom'>Launch Video</h3>
+            {isAuthenticated
+              ? (
+                <div className='col-md-8 text-center mt-4 mx-auto'>
+                  <div className='ratio ratio-16x9 my-4'>
+                    <iframe
+                      src={getYouTubeEmbedUrl(launch.links.webcast)}
+                      title='Launch video'
+                      allowFullScreen
+                    />
+                  </div>
+                </div>)
+              : (
+                <div className='text-center mt-2'>
+                  <h3>Want to watch the launch video?{' '} <Link to='/signin' className='text-white'>Sign in</Link> or <Link to='/signup' className='text-white'>create an account!</Link></h3>
+                </div>
+                )}
+          </>
+        )}
+    </>
   )
 }
 
