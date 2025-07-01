@@ -64,12 +64,29 @@ body {
   width: 40%;
 }
 
+.home-pics {
+  width: 30%;
+}
+
+.launch-pics {
+  width: 40%;
+}
+
+.carousel-size {
+  width: 60%
+}
+
 @media only screen and (max-width: 832px) {
   .about-pic {
   width: 75%;
 }
+
+.launch-pics {
+  width: 100%;
 }
 
-.home-pics {
-  width: 30%;
+.carousel-size {
+  width: 100%
 }
+}
+

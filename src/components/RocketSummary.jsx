@@ -3,7 +3,7 @@ import { standardizeDateFormat } from '@/utilities/standardizeDateFormat'
 
 const RocketSummary = ({ id, name, company, country, firstFlight, picture }) => {
   return (
-    <div className='col-md-6 text-center' style={{ width: '40rem' }}>
+    <div className='col-md-10 text-center' style={{ width: '50rem' }}>
       <Link to={`/rockets/${id}`} className='text-decoration-none text-white'>
         <h3 className='border-custom'>{name}</h3>
         <img src={picture} className='card-img-top' alt={name} />

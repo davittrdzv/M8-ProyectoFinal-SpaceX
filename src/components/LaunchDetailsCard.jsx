@@ -37,7 +37,7 @@ const LaunchDetailsCard = ({ launch }) => {
                 : <img
                     src={images[0]}
                     alt={launch.name}
-                    className='card-img-top'
+                    className='launch-pics'
                     onError={handlePicError}
                   />
             )
@@ -45,14 +45,14 @@ const LaunchDetailsCard = ({ launch }) => {
             <img
               src={placeholderPic}
               alt={launch.name}
-              className='card-img-top'
+              className='launch-pics'
               onError={handlePicError}
             />
             )
       }
       {launch.details && <h3>{launch.details}</h3>}
-      <div className='estemero'>
-        <div className='col-md-3 text-center'>
+      <div className='row justify-content-center align-items-stretch gx-4 gy-4 mt-2'>
+        <div className='col-12 col-md-3 text-center d-flex flex-column h-100'>
           <h3 className='border-custom'>{launch.name}</h3>
           <ul className='list-group list-group-flush'>
             <li className='list-group-item'>
@@ -77,7 +77,7 @@ const LaunchDetailsCard = ({ launch }) => {
         </div>
         {!launch.success && launch.failures?.length > 0 && (
           launch.failures.map((fail, index) => (
-            <div className='col-md-3 text-center mt-2' key={index}>
+            <div className='col-12 col-md-3 text-center d-flex flex-column' key={index}>
               <h3 className='border-custom'>Failures</h3>
               <ul className='list-group list-group-flush'>
                 <li className='list-group-item'>
@@ -99,7 +99,7 @@ const LaunchDetailsCard = ({ launch }) => {
         )}
         {launch.payloads?.length > 0 && (
           <>
-            <div className='col-md-3 text-center mt-2'>
+            <div className='col-12 col-md-3 text-center d-flex flex-column'>
               <h3 className='border-custom'>Payloads</h3>
               <ul className='list-group list-group-flush'>
                 {launch.payloads.map((payload, index) => (
@@ -115,20 +115,20 @@ const LaunchDetailsCard = ({ launch }) => {
           </>
         )}
         {launch.ships?.length > 0 && (
-          <div className='col-md-3 text-center mt-2'>
+          <div className='col-12 col-md-3 text-center d-flex flex-column'>
             <h3 className='border-custom'>Ships</h3>
             <ul className='list-group list-group-flush'>
               {launch.ships.map((ship, index) => (
                 <li className='list-group-item' key={index}>
                   <strong>Name:</strong>
-                  <p className='compact-text'>{findById(shipsInfo, ship)?.legacy_id}</p>
+                  <p className='compact-text'>{findById(shipsInfo, ship)?.name}</p>
                 </li>
               ))}
             </ul>
           </div>
         )}
         {launch.capsules?.length > 0 && (
-          <div className='col-md-3 text-center mt-2'>
+          <div className='col-12 col-md-3 text-center d-flex flex-column'>
             <h3 className='border-custom'>Capsules</h3>
             <ul className='list-group list-group-flush'>
               {launch.capsules.map((capsule, index) => (
@@ -143,7 +143,7 @@ const LaunchDetailsCard = ({ launch }) => {
           </div>
         )}
         {launch.launchpad && (
-          <div className='col-md-3 text-center mt-2'>
+          <div className='col-12 col-md-3 text-center d-flex flex-column'>
             <h3 className='border-custom'>Launchpad</h3>
             <ul className='list-group list-group-flush'>
               <li className='list-group-item'>
@@ -158,7 +158,7 @@ const LaunchDetailsCard = ({ launch }) => {
             ? (
               <>
                 {launch.cores.map((core, index) => (
-                  <div key={index} className='col-md-3 text-center mt-2'>
+                  <div key={index} className='col-12 col-md-3 text-center d-flex flex-column'>
                     <h3 className='border-custom'>Core {findById(coresInfo, core.core)?.serial}</h3>
                     <ul className='list-group list-group-flush'>
                       <li className='list-group-item'>
@@ -208,7 +208,7 @@ const LaunchDetailsCard = ({ launch }) => {
             : <></>
         )}
         {(launch.links?.article || launch.links?.wikipedia) && (
-          <div className='col-md-3 text-center mt-2'>
+          <div className='col-12 col-md-3 text-center d-flex flex-column'>
             <h3 className='border-custom'>External Links</h3>
             <ul className='list-group list-group-flush'>
               {launch.links?.article && (
@@ -239,26 +239,31 @@ const LaunchDetailsCard = ({ launch }) => {
       </div>
       {launch.crew?.length > 0 && (
         <>
-          <h3 className='border-custom'>Crew</h3>
-          <div className='estemero'>
+          <div className='row justify-content-center align-items-stretch gx-4 gy-4 mt-2'>
+            <h3 className='border-custom'>Crew</h3>
             {launch.crew.map((crewMember, index) => {
               const crewData = findById(crewInfo, crewMember.crew)
               return (
-                <div className='col-md-3 text-center mt-2' key={index}>
+                <div className='col-12 col-md-3 text-center d-flex flex-column' key={index}>
                   {crewData &&
                     <>
                       <h3 className='border-custom'>{crewData.name}</h3>
-                      <img src={crewData.image} alt={crewData.name} style={{ width: '19rem' }} />
-                      <ul className='list-group list-group-flush'>
-                        <li className='list-group-item'>
-                          <strong>Agency:</strong>
-                          <p className='compact-text'>{crewData.agency}</p>
-                        </li>
-                        <li className='list-group-item'>
-                          <strong>Role:</strong>
-                          <p className='compact-text'>{crewMember.role}</p>
-                        </li>
-                      </ul>
+                      <div>
+
+                        <ul className='list-group list-group-flush'>
+                          <li className='list-group-item'>
+                            <img src={crewData.image} alt={crewData.name} style={{ width: '100%' }} />
+                          </li>
+                          <li className='list-group-item'>
+                            <strong>Agency:</strong>
+                            <p className='compact-text'>{crewData.agency}</p>
+                          </li>
+                          <li className='list-group-item'>
+                            <strong>Role:</strong>
+                            <p className='compact-text'>{crewMember.role}</p>
+                          </li>
+                        </ul>
+                      </div>
                     </>}
                 </div>
               )
@@ -269,7 +274,9 @@ const LaunchDetailsCard = ({ launch }) => {
       {launch.links?.webcast &&
         (
           <>
-            <h3 className='border-custom'>Launch Video</h3>
+            <div className='mt-2'>
+              <h3 className='border-custom'>Launch Video</h3>
+            </div>
             {isAuthenticated
               ? (
                 <div className='col-md-8 text-center mt-4 mx-auto'>
