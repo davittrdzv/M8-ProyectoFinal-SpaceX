@@ -3,11 +3,13 @@ import Spinner from '@/components/Spinner'
 import { useSpaceXContext } from '@/hooks/useSpaceXContext'
 import SpaceXLogo from '@/components/SpaceXLogo'
 import { useEffect, useState } from 'react'
+import { monthNames } from '@/utilities/months'
 
 const Starlink = () => {
   const { starlinkInfo, isStarlinkInfoLoading } = useSpaceXContext()
 
   const [filteredSatellites, setFilteredSatellites] = useState([])
+
   const [launchYear, setLaunchYear] = useState([])
   const [launchMonth, setLaunchMonth] = useState([])
   const [satVersion, setSatVersion] = useState([])
@@ -15,21 +17,6 @@ const Starlink = () => {
   const [selectedYear, setSelectedYear] = useState('')
   const [selectedMonth, setSelectedMonth] = useState('')
   const [selectedVersion, setSelectedVersion] = useState('')
-
-  const monthNames = {
-    '01': 'January',
-    '02': 'February',
-    '03': 'March',
-    '04': 'April',
-    '05': 'May',
-    '06': 'June',
-    '07': 'July',
-    '08': 'August',
-    '09': 'September',
-    10: 'October',
-    11: 'November',
-    12: 'December'
-  }
 
   useEffect(() => {
     if (!isStarlinkInfoLoading && starlinkInfo.length > 0) {
@@ -84,17 +71,14 @@ const Starlink = () => {
           : (
             <>
               <h4>{starlinkInfo.length} Satellites currently in Orbit</h4>
-              {selectedYear !== '' || selectedMonth !== '' || selectedVersion !== ''
-                ? (
-                  <>
-                    <span>Applied Filters:</span>{' '}
-                    {selectedYear !== '' && <span>Launch Year: {selectedYear}</span>}{' '}
-                    {selectedMonth !== '' && <span>Launch Month: {monthNames[selectedMonth] || selectedMonth}</span>}{' '}
-                    {selectedVersion !== '' && <span>Satellite Version: {selectedVersion}</span>}{' '}
-                    <p>{filteredSatellites.length} Satellites Found</p>
-                  </>
-                  )
-                : null}
+              {(selectedYear !== '' || selectedMonth !== '' || selectedVersion !== '') &&
+                <>
+                  <span>Applied Filters:</span>{' '}
+                  {selectedYear !== '' && <span>Year of Launch: {selectedYear}</span>}{' '}
+                  {selectedMonth !== '' && <span>Month of Launch: {monthNames[selectedMonth] || selectedMonth}</span>}{' '}
+                  {selectedVersion !== '' && <span>Satellite Version: {selectedVersion}</span>}
+                  <p>{filteredSatellites.length} Satellites Found</p>
+                </>}
               <form className='container border-custom mb-2'>
                 <div>
                   <p className='compact-text'>Filter Satellites:</p>
