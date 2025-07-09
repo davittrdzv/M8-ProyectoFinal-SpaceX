@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import LaunchSummary from '@/components/LaunchSummary'
+import SpaceXLogo from '@/components/SpaceXLogo'
 import Spinner from '@/components/Spinner'
 import { useSpaceXContext } from '@/hooks/useSpaceXContext'
 import { findById } from '@/utilities/findById'
-import SpaceXLogo from '@/components/SpaceXLogo'
 import { monthNames } from '@/utilities/months'
+import { formatSuccess } from '@/utilities/formatSuccess'
 
 const Launches = () => {
   const { launchesInfo, isLaunchesInfoLoading, rocketsInfo, isRocketsInfoLoading, launchpadsInfo, isLaunchpadsInfoLoading } = useSpaceXContext()
@@ -91,12 +92,7 @@ const Launches = () => {
                     {selectedRocket !== '' && <span>Rocket: {findById(rocketsInfo, selectedRocket)?.name}</span>}{' '}
                     {selectedSuccess !== '' && (
                       <span>
-                        Success:{' '}
-                        {selectedSuccess === 'true'
-                          ? 'Successful'
-                          : selectedSuccess === 'false'
-                            ? 'Unsuccessful'
-                            : 'Unknown Status'}
+                        Success: {formatSuccess(selectedSuccess === 'true' ? true : selectedSuccess === 'false' ? false : null)}
                       </span>
                     )}{' '}
                     {selectedYear !== '' && <span>Year of Launch: {selectedYear}</span>}{' '}
@@ -127,7 +123,7 @@ const Launches = () => {
                       <option value=''>Filter by Success</option>
                       {success.map(e => (
                         <option key={e} value={e}>
-                          {e === 'true' ? 'Successful' : e === 'false' ? 'Unsuccessful' : 'Unknown Status'}
+                          {formatSuccess(e === 'true' ? true : e === 'false' ? false : null)}
                         </option>
                       ))}
                     </select>
@@ -193,7 +189,7 @@ const Launches = () => {
                     id={launch.id}
                     name={launch.name}
                     date={launch.date_utc}
-                    success={launch.success === true ? 'Successful' : 'Unsuccessful'}
+                    success={formatSuccess(launch.success)}
                     rocket={findById(rocketsInfo, launch.rocket)?.name}
                     launchpad={findById(launchpadsInfo, launch.launchpad)?.full_name}
                     picture={launch.links.patch.large}

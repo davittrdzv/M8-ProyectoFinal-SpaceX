@@ -2,9 +2,10 @@ import Carousel from '@/components/Carousel'
 import { placeholderPic, handlePicError } from '@/utilities/placeholderPic'
 import { getYouTubeEmbedUrl } from '@/utilities/getYouTubeEmbedUrl'
 import { standardizeDateFormat } from '@/utilities/standardizeDateFormat'
+import { formatSuccess } from '@/utilities/formatSuccess'
+import { findById } from '@/utilities/findById'
 import { useSpaceXContext } from '@/hooks/useSpaceXContext'
 import { useAuthContext } from '@/hooks/useAuthContext'
-import { findById } from '@/utilities/findById'
 import { Link } from 'react-router-dom'
 
 const LaunchDetailsCard = ({ launch }) => {
@@ -65,7 +66,7 @@ const LaunchDetailsCard = ({ launch }) => {
             </li>
             <li className='list-group-item'>
               <strong>Success:</strong>
-              <p className='compact-text'>{launch.success ? 'Successful' : 'Unsuccessful'}</p>
+              <p className='compact-text'>{formatSuccess(launch.success)}</p>
             </li>
             <li className='list-group-item'>
               <strong>Rocket:</strong>
