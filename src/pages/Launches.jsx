@@ -153,7 +153,7 @@ const Launches = () => {
                       ))}
                     </select>
                     <select
-                      className='m-2'
+                      className='m-2 w-100'
                       id='launchpad'
                       value={selectedLaunchpad}
                       onChange={(e) => setSelectedLaunchpad(e.target.value)}
