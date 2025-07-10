@@ -1,6 +1,6 @@
 import { standardizeDateFormat } from '@/utilities/standardizeDateFormat'
 
-const userProfileCard = ({ firstName, lastName, email, gender, role, createdAt, updatedAt }) => {
+const UserProfileCard = ({ firstName, lastName, email, gender, role, createdAt, updatedAt }) => {
   return (
     <div className='mx-auto mt-4 user-table-container'>
       <table className='table table-bordered table-striped mb-4'>
@@ -39,4 +39,4 @@ const userProfileCard = ({ firstName, lastName, email, gender, role, createdAt, 
   )
 }
 
-export default userProfileCard
+export default UserProfileCard
