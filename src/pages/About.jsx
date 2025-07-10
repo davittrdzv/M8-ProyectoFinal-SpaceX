@@ -23,7 +23,7 @@ const About = () => {
           <li><b>Admin Role</b> — Email: <code>superman@dc.com</code> | Password: <code>superman</code></li>
         </ul>
         <p>
-          Admins can create products, while regular users can browse and purchase.
+          Admins can see a list of all registered users, while regular users can browse the website, some of them exclusive to registered users (Starlink, videos, external articles).
           You can also create your own account on the <b>Sign Up</b> page. It’s not necessary to provide a real email — the information is only stored on the mock server and will be lost when the server "sleeps" due to inactivity.
         </p>
       </div>
