@@ -12,4 +12,10 @@ const getMeUserService = (token) => axios.get(`${BASE_URL}/users/me`, {
   }
 })
 
-export { signUpUserService, signInUserService, getMeUserService }
+const getAllUsersService = (token) => axios.get(`${BASE_URL}/users`, {
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+})
+
+export { signUpUserService, signInUserService, getMeUserService, getAllUsersService }

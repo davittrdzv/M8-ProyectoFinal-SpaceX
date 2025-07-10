@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { useAuthContext } from '@/hooks/useAuthContext'
 
 const NavBar = () => {
-  const { isAuthenticated, userName, logOutFunction } = useAuthContext()
+  const { isAuthenticated, userPayload, userName, logOutFunction } = useAuthContext()
 
   const collapseNavBar = () => {
     const navbar = document.getElementById('navigationBar')
@@ -77,6 +77,13 @@ const NavBar = () => {
                 {Object.keys(userName).length > 0 ? `Hi, ${userName.firstName} ${userName.lastName}!` : 'Hi, Guest!'}
               </span>
             </li>
+            {(isAuthenticated && userPayload && userPayload.role === 'ADMIN') && (
+              <li className='nav-item'>
+                <NavLink className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} aria-current='page' to='/allusers' onClick={() => collapseNavBar()}>
+                  All Users Info
+                </NavLink>
+              </li>
+            )}
             {!isAuthenticated
               ? (
                 <>
