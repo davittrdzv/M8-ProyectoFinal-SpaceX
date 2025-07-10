@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { useAuthContext } from '@/hooks/useAuthContext'
 
 const NavBar = () => {
-  const { isAuthenticated, logOutFunction } = useAuthContext()
+  const { isAuthenticated, userName, logOutFunction } = useAuthContext()
 
   const collapseNavBar = () => {
     const navbar = document.getElementById('navigationBar')
@@ -72,6 +72,11 @@ const NavBar = () => {
                 About
               </NavLink>
             </li>
+            <li className='nav-item d-flex align-items-center'>
+              <span>
+                {Object.keys(userName).length > 0 ? `Hi, ${userName.firstName} ${userName.lastName}!` : 'Hi, Guest!'}
+              </span>
+            </li>
             {!isAuthenticated
               ? (
                 <>
@@ -88,16 +93,24 @@ const NavBar = () => {
                 </>
                 )
               : (
-                <li className='nav-item'>
-                  <button
-                    className='nav-link' onClick={() => {
-                      logOutFunction()
-                      collapseNavBar()
-                    }}
-                  >
-                    Log Out
-                  </button>
-                </li>)}
+                <>
+                  <li className='nav-item'>
+                    <NavLink className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} aria-current='page' to='/userprofile' onClick={() => collapseNavBar()}>
+                      My Profile
+                    </NavLink>
+                  </li>
+                  <li className='nav-item'>
+                    <button
+                      className='nav-link' onClick={() => {
+                        logOutFunction()
+                        collapseNavBar()
+                      }}
+                    >
+                      Log Out
+                    </button>
+                  </li>
+                </>
+                )}
           </ul>
         </div>
       </div>

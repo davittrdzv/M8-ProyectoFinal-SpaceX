@@ -13,6 +13,7 @@ import RocketDetails from '@/pages/RocketDetails'
 import SignIn from '@/pages/SignIn'
 import SignUp from '@/pages/SignUp'
 import Starlink from '@/pages/Starlink'
+import UserProfile from '@/pages/UserProfile'
 
 const RoutesIndex = () => {
   return (
@@ -31,6 +32,7 @@ const RoutesIndex = () => {
       </Route>
       <Route element={<PrivateRoutes />}>
         <Route path='/starlink' element={<Starlink />} />
+        <Route path='/userprofile' element={<UserProfile />} />
       </Route>
       <Route path='*' element={<NotFound />} />
     </Routes>
