@@ -6,14 +6,25 @@ const About = () => {
       <div className='card mt-2 mb-2'>
         <h1 className='text-center'>About</h1>
       </div>
+
       <h1 className='text-center'>Welcome to my SpaceX Explorer Website!</h1>
       <img src={mePic} alt='Me' className='about-pic d-block mx-auto' />
+
       <div className='card mt-2 mb-2'>
         <h2 className='text-center'>About the Website</h2>
       </div>
       <div className='text-justify'>
         <p>
-          PENDIENTE
+          This is my final project for Module 8 of the Web Development program at DEV.F. The goal was to create a front-end web app using real public data, user authentication, and responsive design.
+        </p>
+        <p>
+          This website fetches real-time and historical data from the public SpaceX API — including upcoming launches, rocket specs, Starlink satellites, and even the Tesla Roadster in orbit. Users can create an account or log in using predefined users to unlock extra content.
+        </p>
+        <p>
+          Depending on your role (admin or regular user), different features are available. For example, Starlink satellite data is only visible for logged-in users. Admins can also view a list of registered users, while regular users get a simplified experience.
+        </p>
+        <p>
+          Everything is built with React and styled using Bootstrap 5. The routing is handled through React Router DOM, with protected routes and conditional rendering depending on user role and login status. I also implemented reusable card components for different types of SpaceX data, and global state is managed through two React Contexts: one for authentication and one for API data.
         </p>
         <p>
           You can log in using one of the following pre-registered users:
@@ -23,10 +34,10 @@ const About = () => {
           <li><b>Admin Role</b> — Email: <code>superman@dc.com</code> | Password: <code>superman</code></li>
         </ul>
         <p>
-          Admins can see a list of all registered users, while regular users can browse the website, some of them exclusive to registered users (Starlink, videos, external articles).
-          You can also create your own account on the <b>Sign Up</b> page. It’s not necessary to provide a real email — the information is only stored on the mock server and will be lost when the server "sleeps" due to inactivity.
+          You can also create your own account via the <b>Sign Up</b> page. The authentication system is powered by a mock backend (hosted on Render), so no real email is required. Keep in mind that data will reset if the server goes idle for a while.
         </p>
       </div>
+
       <div className='card mt-2 mb-2'>
         <h2 className='text-center'>About Me</h2>
       </div>
@@ -37,6 +48,7 @@ const About = () => {
           so now I'm studying Web Development.
         </p>
       </div>
+
       <a href='https://github.com/davittrdzv' target='_blank' rel='noopener noreferrer'>
         <svg
           width='98'
@@ -52,6 +64,7 @@ const About = () => {
           />
         </svg>
       </a>
+
       <div className='card mt-3 mb-2'>
         <h2 className='text-center'>External Links and Mentions</h2>
       </div>
@@ -99,8 +112,7 @@ const About = () => {
             >
               SpaceX API GitHub Repository
             </a>
-            <p className='mt-1'>This GitHub repository hosts the open-source SpaceX API. It provides detailed information about SpaceX launches, rockets, capsules, payloads, Starlink satellites, and more. The API is built and maintained by the developer community and uses data scraped from public SpaceX sources. It's a great tool for developers, space enthusiasts, and anyone interested in real-time and historical SpaceX data.
-            </p>
+            <p className='mt-1'>This GitHub repository hosts the open-source SpaceX API. It provides detailed information about SpaceX launches, rockets, capsules, payloads, Starlink satellites, and more.</p>
           </li>
           <li>
             <a
