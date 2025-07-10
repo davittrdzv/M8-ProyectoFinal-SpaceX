@@ -11,7 +11,7 @@ const EarthGlobe = ({ starlinkData }) => {
   }, [])
 
   return (
-    <div style={{ width: '85%', height: '600px', margin: '0 auto' }}>
+    <div style={{ width: '85%', height: '600px', margin: '0 auto' }} className='border-custom'>
       <Viewer
         ref={viewerRef}
         sceneModePicker={false}

@@ -14,7 +14,7 @@ const NavBar = () => {
   }
   return (
     <nav
-      className='navbar navbar-expand-md fixed-top navbar-dark bg-dark'
+      className='navbar navbar-expand-lg fixed-top navbar-dark bg-dark'
       aria-label='Navigation Bar'
     >
       <div className='container-fluid'>
@@ -32,8 +32,8 @@ const NavBar = () => {
         >
           <span className='navbar-toggler-icon' />
         </button>
-        <div className='collapse navbar-collapse' id='navigationBar'>
-          <ul className='navbar-nav me-auto mb-2 mb-md-0'>
+        <div className='collapse navbar-collapse scrollable-navbar' id='navigationBar'>
+          <ul className='navbar-nav w-100 d-lg-flex justify-content-lg-between align-items-lg-center mb-2 mb-lg-0 fs-5'>
             <li className='nav-item'>
               <NavLink className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} aria-current='page' to='/' onClick={() => collapseNavBar()}>
                 Home

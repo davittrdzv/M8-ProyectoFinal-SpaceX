@@ -74,7 +74,7 @@ const SolarSystemScene = ({ roadsterInfo }) => {
     }
   }, [roadsterInfo])
 
-  return <div ref={mountRef} style={{ width: '100%', height: '100vh' }} />
+  return <div ref={mountRef} style={{ width: '100%', height: '100vh' }} className='border-custom' />
 }
 
 export default SolarSystemScene

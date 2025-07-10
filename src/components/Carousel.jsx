@@ -1,6 +1,6 @@
 const Carousel = ({ images }) => {
   return (
-    <div id='carouselIndicators' className='carousel slide carousel-size mx-auto'>
+    <div id='carouselIndicators' className='carousel slide carousel-size mx-auto border-custom'>
       <div className='carousel-indicators'>
         {images.map((_, index) => (
           <button
