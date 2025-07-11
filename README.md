@@ -1,6 +1,6 @@
 # SpaceX Explorer Website — Final Project (Module 8, DEV.F)
 
-🌎 Live site: PENDING
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2c7f133f-ec77-4c2e-a9d5-cf3acdcbdbfe/deploy-status)](https://app.netlify.com/projects/g38m8-drv-spacexexplorer/deploys)
 
 Built as the final project for the Web Development Program (Module 8) at DEV.F.
 
@@ -67,14 +67,18 @@ Or you can create your own account via the **Sign Up** page.
 ```
 src/
 │
+├── assets/             # Static files (images, icons, custom CSS)
 ├── components/         # Reusable UI elements (cards, navbar, footer)
-├── pages/              # Main page components (Home, About, Login, etc.)
 ├── context/            # AuthContext & SpaceXContext providers
 ├── hooks/              # Custom React hooks (e.g., useAuthContext)
-├── services/           # Axios-based API service files
-├── routes/             # Route logic with conditional protection
-├── assets/             # Static files (images, CSS)
-└── App.jsx             # App wrapper and router
+├── pages/              # Main page components (Home, About, Login, etc.)
+├── routeGuards/        # Higher-order components for protecting routes (e.g., RequireAuth)
+├── routes/             # Centralized routing logic and <RoutesIndex />
+├── services/           # Axios-based API service files for SpaceX and auth
+├── styles/             # Optional custom CSS modules or global overrides
+├── utilities/          # Shared helper functions (e.g., formatters, fallbacks)
+├── main.jsx            # App entry point, mounts <App /> and wraps with contexts
+└── App.jsx             # Top-level component with router and layout
 ```
 
 ---
@@ -122,7 +126,7 @@ src/
 
 ## 🌐 Live Demo
 
-> 🔗 **Live deployment on Netlify**: _PENDING_
+🔗 **Live deployment on Netlify**: [DRV SpaceX Explorer](https://g38m8-drv-spacexexplorer.netlify.app/)
 
 ---
 
