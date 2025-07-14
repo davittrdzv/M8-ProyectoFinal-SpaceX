@@ -1,12 +1,14 @@
-import Carousel from '@/components/Carousel'
+import { lazy } from 'react'
+import { Link } from 'react-router-dom'
+import { useSpaceXContext } from '@/hooks/useSpaceXContext'
+import { useAuthContext } from '@/hooks/useAuthContext'
+import LazyWithSpinner from '@/utilities/LazyWithSpinner'
 import { placeholderPic, handlePicError } from '@/utilities/placeholderPic'
-import { getYouTubeEmbedUrl } from '@/utilities/getYouTubeEmbedUrl'
 import { standardizeDateFormat } from '@/utilities/standardizeDateFormat'
 import { formatSuccess } from '@/utilities/formatSuccess'
 import { findById } from '@/utilities/findById'
-import { useSpaceXContext } from '@/hooks/useSpaceXContext'
-import { useAuthContext } from '@/hooks/useAuthContext'
-import { Link } from 'react-router-dom'
+import Carousel from '@/components/Carousel'
+const Video = lazy(() => import('@/components/Video'))
 
 const LaunchDetailsCard = ({ launch }) => {
   const {
@@ -281,13 +283,12 @@ const LaunchDetailsCard = ({ launch }) => {
             {isAuthenticated
               ? (
                 <div className='col-md-8 text-center mt-4 mx-auto'>
-                  <div className='ratio ratio-16x9 my-4'>
-                    <iframe
-                      src={getYouTubeEmbedUrl(launch.links.webcast)}
-                      title='Launch video'
-                      allowFullScreen
+                  <LazyWithSpinner>
+                    <Video
+                      video={launch.links.webcast}
+                      title='Launch Video'
                     />
-                  </div>
+                  </LazyWithSpinner>
                 </div>)
               : (
                 <div className='text-center mt-2'>

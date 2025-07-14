@@ -1,12 +1,14 @@
-import Carousel from '@/components/Carousel'
-import Spinner from '@/components/Spinner'
-import SolarSystemScene from '@/components/SolarSystemScene'
+import { lazy } from 'react'
 import { Link } from 'react-router-dom'
 import { useSpaceXContext } from '@/hooks/useSpaceXContext'
 import { useAuthContext } from '@/hooks/useAuthContext'
-import { getYouTubeEmbedUrl } from '@/utilities/getYouTubeEmbedUrl'
+import LazyWithSpinner from '@/utilities/LazyWithSpinner'
 import { standardizeDateFormat } from '@/utilities/standardizeDateFormat'
+import Carousel from '@/components/Carousel'
+import Spinner from '@/components/Spinner'
 import SpaceXLogo from '@/components/SpaceXLogo'
+const SolarSystemScene = lazy(() => import('@/components/SolarSystemScene'))
+const Video = lazy(() => import('@/components/Video'))
 
 const Roadster = () => {
   const { roadsterInfo, isRoadsterInfoLoading } = useSpaceXContext()
@@ -109,17 +111,18 @@ const Roadster = () => {
                   <>
                     <div className='col-md-8 text-center mt-2 mx-auto'>
                       <h3 className='border-custom'>Roadster Position Graphic</h3>
-                      <SolarSystemScene roadsterInfo={roadsterInfo} />
+                      <LazyWithSpinner>
+                        <SolarSystemScene roadsterInfo={roadsterInfo} />
+                      </LazyWithSpinner>
                     </div>
                     <div className='col-md-8 text-center mt-4 mx-auto'>
                       <h3 className='border-custom'>Launch Video</h3>
-                      <div className='ratio ratio-16x9 my-4'>
-                        <iframe
-                          src={getYouTubeEmbedUrl(roadsterInfo.video)}
+                      <LazyWithSpinner>
+                        <Video
+                          video={roadsterInfo.video}
                           title='Roadster Launch Video'
-                          allowFullScreen
                         />
-                      </div>
+                      </LazyWithSpinner>
                     </div>
                   </>
                   )

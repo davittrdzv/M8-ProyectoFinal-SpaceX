@@ -1,9 +1,10 @@
-import EarthGlobe from '@/components/EarthGlobe'
-import Spinner from '@/components/Spinner'
+import { useEffect, useState, lazy } from 'react'
 import { useSpaceXContext } from '@/hooks/useSpaceXContext'
-import SpaceXLogo from '@/components/SpaceXLogo'
-import { useEffect, useState } from 'react'
+import LazyWithSpinner from '@/utilities/LazyWithSpinner'
 import { monthNames } from '@/utilities/months'
+import Spinner from '@/components/Spinner'
+import SpaceXLogo from '@/components/SpaceXLogo'
+const EarthGlobe = lazy(() => import('@/components/EarthGlobe'))
 
 const Starlink = () => {
   const { starlinkInfo, isStarlinkInfoLoading } = useSpaceXContext()
@@ -133,7 +134,9 @@ const Starlink = () => {
                     </button>
                   </div>}
               </form>
-              <EarthGlobe starlinkData={filteredSatellites} />
+              <LazyWithSpinner>
+                <EarthGlobe starlinkData={filteredSatellites} />
+              </LazyWithSpinner>
             </>
             )}
       </div>
