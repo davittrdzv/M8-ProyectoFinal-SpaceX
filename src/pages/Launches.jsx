@@ -1,17 +1,40 @@
-import { useState, useEffect } from 'react'
-import LaunchSummary from '@/components/LaunchSummary'
-import SpaceXLogo from '@/components/SpaceXLogo'
-import Spinner from '@/components/Spinner'
+import React, { useState, useEffect } from 'react'
+import { VirtuosoGrid } from 'react-virtuoso'
 import { useSpaceXContext } from '@/hooks/useSpaceXContext'
 import { findById } from '@/utilities/findById'
 import { monthNames } from '@/utilities/months'
 import { formatSuccess } from '@/utilities/formatSuccess'
+import LaunchSummary from '@/components/LaunchSummary'
+import SpaceXLogo from '@/components/SpaceXLogo'
+import Spinner from '@/components/Spinner'
+
+const ListContainer = React.forwardRef(({ style, children }, ref) => (
+  <div
+    ref={ref}
+    className='container-fluid mt-2 d-flex flex-wrap justify-content-center'
+    style={{ ...style, gap: '1rem' }}
+  >
+    {children}
+  </div>
+))
+
+const ItemContainer = ({ children, ...props }) => (
+  <div {...props} className='d-flex justify-content-center'>
+    {children}
+  </div>
+)
 
 const Launches = () => {
-  const { launchesInfo, isLaunchesInfoLoading, rocketsInfo, isRocketsInfoLoading, launchpadsInfo, isLaunchpadsInfoLoading } = useSpaceXContext()
+  const {
+    launchesInfo,
+    isLaunchesInfoLoading,
+    rocketsInfo,
+    isRocketsInfoLoading,
+    launchpadsInfo,
+    isLaunchpadsInfoLoading
+  } = useSpaceXContext()
 
   const [filteredLaunches, setFilteredLaunches] = useState([])
-
   const [success, setSuccess] = useState([])
   const [launchYear, setLaunchYear] = useState([])
   const [launchMonth, setLaunchMonth] = useState([])
@@ -103,23 +126,13 @@ const Launches = () => {
                 <form className='container border-custom mb-2'>
                   <div>
                     <p className='compact-text'>Filter Launches:</p>
-                    <select
-                      className='m-2'
-                      id='rocket'
-                      value={selectedRocket}
-                      onChange={(e) => setSelectedRocket(e.target.value)}
-                    >
+                    <select className='m-2' value={selectedRocket} onChange={(e) => setSelectedRocket(e.target.value)}>
                       <option value=''>Filter by Rocket</option>
                       {rocketsInfo.map(rocket => (
                         <option key={rocket.id} value={rocket.id}>{rocket.name}</option>
                       ))}
                     </select>
-                    <select
-                      className='m-2'
-                      id='success'
-                      value={selectedSuccess}
-                      onChange={(e) => setSelectedSuccess(e.target.value)}
-                    >
+                    <select className='m-2' value={selectedSuccess} onChange={(e) => setSelectedSuccess(e.target.value)}>
                       <option value=''>Filter by Success</option>
                       {success.map(e => (
                         <option key={e} value={e}>
@@ -127,44 +140,26 @@ const Launches = () => {
                         </option>
                       ))}
                     </select>
-
-                    <select
-                      className='m-2'
-                      id='launchYear'
-                      value={selectedYear}
-                      onChange={(e) => setSelectedYear(e.target.value)}
-                    >
+                    <select className='m-2' value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
                       <option value=''>Filter by Year of Launch</option>
                       {launchYear.map(year => (
                         <option key={year} value={year}>{year}</option>
                       ))}
                     </select>
-                    <select
-                      className='m-2'
-                      id='launchMonth'
-                      value={selectedMonth}
-                      onChange={(e) => setSelectedMonth(e.target.value)}
-                    >
+                    <select className='m-2' value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)}>
                       <option value=''>Filter by Month of Launch</option>
                       {launchMonth.map(month => (
-                        <option key={month} value={month}>
-                          {monthNames[month] || month}
-                        </option>
+                        <option key={month} value={month}>{monthNames[month] || month}</option>
                       ))}
                     </select>
-                    <select
-                      className='m-2 w-100'
-                      id='launchpad'
-                      value={selectedLaunchpad}
-                      onChange={(e) => setSelectedLaunchpad(e.target.value)}
-                    >
+                    <select className='m-2 w-100' value={selectedLaunchpad} onChange={(e) => setSelectedLaunchpad(e.target.value)}>
                       <option value=''>Filter by Launchpad</option>
                       {launchpadsInfo.map(launchpad => (
                         <option key={launchpad.id} value={launchpad.id}>{launchpad.full_name}</option>
                       ))}
                     </select>
                   </div>
-                  {(selectedRocket !== '' || selectedSuccess !== '' || selectedLaunchpad !== '' || selectedYear !== '' || selectedMonth !== '') &&
+                  {(selectedRocket || selectedSuccess || selectedLaunchpad || selectedYear || selectedMonth) &&
                     <div>
                       <button
                         type='button'
@@ -182,24 +177,32 @@ const Launches = () => {
                     </div>}
                 </form>
               </div>
-              <div className='row row-cols-1 row-cols-md-4 g-4 justify-content-center mt-2'>
-                {filteredLaunches.map(launch => (
-                  <LaunchSummary
-                    key={launch.id}
-                    id={launch.id}
-                    name={launch.name}
-                    date={launch.date_utc}
-                    success={formatSuccess(launch.success)}
-                    rocket={findById(rocketsInfo, launch.rocket)?.name}
-                    launchpad={findById(launchpadsInfo, launch.launchpad)?.full_name}
-                    picture={launch.links.patch.large}
-                  />
-                ))}
-              </div>
+              <VirtuosoGrid
+                useWindowScroll
+                totalCount={filteredLaunches.length}
+                components={{
+                  List: ListContainer,
+                  Item: ItemContainer
+                }}
+                itemContent={(index) => {
+                  const launch = filteredLaunches[index]
+                  return (
+                    <LaunchSummary
+                      key={launch.id}
+                      id={launch.id}
+                      name={launch.name}
+                      date={launch.date_utc}
+                      success={formatSuccess(launch.success)}
+                      rocket={findById(rocketsInfo, launch.rocket)?.name}
+                      launchpad={findById(launchpadsInfo, launch.launchpad)?.full_name}
+                      picture={launch.links.patch.large}
+                    />
+                  )
+                }}
+              />
             </>
             )
-        }
-
+      }
     </>
   )
 }

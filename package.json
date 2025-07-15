@@ -19,6 +19,7 @@
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.58.0",
     "react-router-dom": "^7.6.2",
+    "react-virtuoso": "^4.13.0",
     "resium": "^1.19.0-beta.1",
     "satellite.js": "^6.0.0",
     "sweetalert2": "^11.22.0",
