@@ -62,6 +62,15 @@ Or you can create your own account via the **Sign Up** page.
 
 ---
 
+## 📈 Performance Optimizations
+
+- Implemented **lazy loading** for all main page components using `React.lazy()` and `Suspense`, improving the initial load performance by deferring non-critical code
+- Certain heavy UI components are dynamically loaded only when needed to reduce the JavaScript bundle size
+- The **Launches page** uses **list virtualization** via `react-virtuoso` to handle hundreds of launch items without performance degradation. Only visible items are rendered to the DOM, making scroll operations smooth and efficient
+Reduced the number of network requests and resource usage when rendering long lists
+
+---
+
 ## 🧱 Folder Structure Highlights
 
 ```
