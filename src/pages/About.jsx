@@ -6,10 +6,8 @@ const About = () => {
       <div className='card mt-2 mb-2'>
         <h1 className='text-center'>About</h1>
       </div>
-
       <h1 className='text-center'>Welcome to my SpaceX Explorer Website!</h1>
       <img src={mePic} alt='Me' className='about-pic d-block mx-auto' />
-
       <div className='card mt-2 mb-2'>
         <h2 className='text-center'>About the Website</h2>
       </div>
@@ -27,6 +25,9 @@ const About = () => {
           Everything is built with React and styled using Bootstrap 5. The routing is handled through React Router DOM, with protected routes and conditional rendering depending on user role and login status. I also implemented reusable card components for different types of SpaceX data, and global state is managed through two React Contexts: one for authentication and one for API data.
         </p>
         <p>
+          The app is optimized for performance using lazy loading with React Suspense. Routes and heavy components are dynamically imported to reduce the initial load time. In addition, the list of launches uses <b>virtualized rendering</b> through the <code>react-virtuoso</code> library, which significantly improves scroll performance when displaying hundreds of items by only rendering those in view.
+        </p>
+        <p>
           You can log in using one of the following pre-registered users:
         </p>
         <ul>
@@ -37,7 +38,6 @@ const About = () => {
           You can also create your own account via the <b>Sign Up</b> page. The authentication system is powered by a mock backend (hosted on Render), so no real email is required. Keep in mind that data will reset if the server goes idle for a while.
         </p>
       </div>
-
       <div className='card mt-2 mb-2'>
         <h2 className='text-center'>About Me</h2>
       </div>
@@ -48,7 +48,6 @@ const About = () => {
           so now I'm studying Web Development.
         </p>
       </div>
-
       <a href='https://github.com/davittrdzv' target='_blank' rel='noopener noreferrer'>
         <svg
           width='98'
@@ -64,7 +63,6 @@ const About = () => {
           />
         </svg>
       </a>
-
       <div className='card mt-3 mb-2'>
         <h2 className='text-center'>External Links and Mentions</h2>
       </div>
