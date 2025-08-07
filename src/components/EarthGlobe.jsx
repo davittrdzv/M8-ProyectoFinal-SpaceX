@@ -1,7 +1,9 @@
 import { useRef, useEffect } from 'react'
 import { Viewer, Entity } from 'resium'
-import { Cartesian3, Color } from 'cesium'
+import { Cartesian3, Color, Ion } from 'cesium'
 import { standardizeDateFormat } from '@/utilities/standardizeDateFormat'
+
+Ion.defaultAccessToken = import.meta.env.VITE_CESIUM_TOKEN
 
 const EarthGlobe = ({ starlinkData }) => {
   const viewerRef = useRef()

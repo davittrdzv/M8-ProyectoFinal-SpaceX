@@ -39,8 +39,6 @@ const Starlink = () => {
 
   useEffect(() => {
     if (!isStarlinkInfoLoading && starlinkInfo.length > 0) {
-      setFilteredSatellites(starlinkInfo)
-
       const uniqueYears = Array.from(
         new Set(starlinkInfo.map(sat => sat.spaceTrack.LAUNCH_DATE?.slice(0, 4) ?? 'Unknown Year'))
       ).sort()
