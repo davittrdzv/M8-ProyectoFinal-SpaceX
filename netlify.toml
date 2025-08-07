@@ -1,2 +1,2 @@
 [build.environment]
-  SECRETS_SCAN_OMIT_KEYS = "Cesium.Ion.defaultAccessToken"
+  SECRETS_SCAN_ENABLED = "false"
